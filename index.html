@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>良久团购 · 网络营销课程实验报告配套材料</title>
+<style>
+  :root {
+    --coral: #FF7F50;
+    --deepblue: #1B3A5C;
+    --bg: #f8f6f3;
+    --white: #fff;
+    --text: #555;
+    --shadow: 0 2px 18px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(160deg, #0F2A45 0%, #1B3A5C 55%, #FF7F50 100%);
+    padding: 70px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+  .hero h1 { font-size: 2.6em; font-weight: 900; letter-spacing: 7px; margin-bottom: 6px; }
+  .hero .sub { font-size: 1.05em; opacity: 0.8; letter-spacing: 5px; }
+  .hero .course {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 5px 22px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    font-size: 0.88em;
+    letter-spacing: 4px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .container { max-width: 920px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  .intro {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    line-height: 1.9;
+    color: var(--text);
+    font-size: 0.95em;
+  }
+
+  /* Cards grid */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px 24px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border: 2px solid transparent;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.1);
+    border-color: var(--coral);
+  }
+  .card .c-icon { font-size: 2.6em; margin-bottom: 12px; }
+  .card h3 { font-size: 1.15em; color: var(--deepblue); margin-bottom: 8px; letter-spacing: 2px; }
+  .card p { font-size: 0.85em; color: #999; line-height: 1.6; }
+  .card .tag {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 4px 14px;
+    border-radius: 12px;
+    font-size: 0.76em;
+    letter-spacing: 2px;
+    background: #FFF5F0;
+    color: var(--coral);
+  }
+
+  /* Table section */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px;
+    margin-top: 28px;
+    box-shadow: var(--shadow);
+  }
+  .section h2 {
+    color: var(--deepblue);
+    font-size: 1.3em;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--coral);
+    letter-spacing: 3px;
+  }
+  .section table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+  .section th {
+    background: #FFF8F5;
+    padding: 12px 14px;
+    text-align: left;
+    color: var(--deepblue);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .section td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--text);
+  }
+  .section td a { color: var(--coral); text-decoration: none; font-weight: 500; }
+  .section td a:hover { text-decoration: underline; }
+  .section .note {
+    margin-top: 14px;
+    font-size: 0.82em;
+    color: #aaa;
+    font-style: italic;
+  }
+  .status-ok { color: #4CAF50; font-weight: 600; }
+  .status-pending { color: #FF9800; font-weight: 600; }
+
+  .footer {
+    text-align: center;
+    padding: 36px 20px;
+    background: var(--deepblue);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.82em;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>良久团购</h1>
+  <p class="sub">网络营销课程 · 实验报告配套材料</p>
+  <p class="course">2025-2026 学年第二学期</p>
+</header>
+
+<div class="container">
+
+  <div class="intro">
+    <p>本页面是<strong>"良久团购 网络营销策划与管理报告"</strong>的配套数字材料汇总索引。
+    下方为针对报告六项任务制作的全部数字内容：Logo、品牌VI识别系统、H5互动活动页面、宣传海报等。
+    所有 HTML 文件均可直接在浏览器中打开查看。</p>
+  </div>
+
+  <div class="cards">
+    <a href="brand_vi.html" class="card" target="_blank">
+      <div class="c-icon">🎨</div>
+      <h3>品牌Logo &amp; VI系统</h3>
+      <p>完整品牌视觉识别手册：Logo展示、色彩系统、4条Slogan、字体规范、应用场景。</p>
+      <span class="tag">对应：第一项任务 · 内容3</span>
+    </a>
+
+    <a href="h5_super_festival.html" class="card" target="_blank">
+      <div class="c-icon">📱</div>
+      <h3>H5 超级团购节</h3>
+      <p>手机端 7 页互动活动：封面→主会场→新人礼包→秒杀→邀请有奖→大转盘→分享传播。</p>
+      <span class="tag">对应：第六项任务</span>
+    </a>
+
+    <a href="posters.html" class="card" target="_blank">
+      <div class="c-icon">📢</div>
+      <h3>活动宣传海报</h3>
+      <p>3 款海报设计：横版公众号首图 + 竖版消费者推广海报 + 竖版团长招募海报。</p>
+      <span class="tag">宣传物料 · 多任务覆盖</span>
+    </a>
+
+    <a href="logo.svg" class="card" target="_blank">
+      <div class="c-icon">🏠</div>
+      <h3>品牌图标（SVG）</h3>
+      <p>纯矢量图形标记：房子 + 爱心 + 购物袋 + 供应链弧线，可无限缩放。</p>
+      <span class="tag">品牌资产</span>
+    </a>
+  </div>
+
+  <!-- Task status table -->
+  <div class="section">
+    <h2>📋 六项任务完成情况</h2>
+    <table>
+      <thead>
+        <tr><th>任务</th><th>内容</th><th>文字报告</th><th>配套材料</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>第一项</td><td>SWOT分析 + STP定位 + Logo/Slogan/VI设计</td><td class="status-ok">✅ 完成</td><td>brand_vi.html · logo.svg</td></tr>
+        <tr><td>第二项</td><td>定价策略（尾数/渗透/歧视/捆绑/参考价格/动态调价）</td><td class="status-ok">✅ 完成</td><td>纯文字内容</td></tr>
+        <tr><td>第三项</td><td>渠道策略（四级分销+社群终端+良久云仓）</td><td class="status-ok">✅ 完成</td><td>纯文字内容</td></tr>
+        <tr><td>第四项</td><td>自媒体运营 + 2条视频脚本</td><td class="status-ok">✅ 策略+脚本完成</td><td class="status-pending">⚠️ 视频拍摄待做</td></tr>
+        <tr><td>第五项</td><td>软文广告 × 2（知识科普型+情感故事型）</td><td class="status-ok">✅ 完成</td><td>纯文字内容</td></tr>
+        <tr><td>第六项</td><td>H5活动页面（超级团购节）</td><td class="status-ok">✅ 完成</td><td>h5_super_festival.html</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Link reference -->
+  <div class="section">
+    <h2>🔗 报告链接填写参考</h2>
+    <p style="color:#888;margin-bottom:14px;">以下链接可填入报告各任务"可访问的链接"处。如需公网链接，推荐使用 GitHub Pages、Netlify Drop 免费托管。</p>
+    <table>
+      <thead>
+        <tr><th>报告任务位置</th><th>建议填写内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>第一项 · 内容1 (SWOT)</td><td>品牌VI页面含SWOT可视化分析 → brand_vi.html</td></tr>
+        <tr><td>第一项 · 内容2 (STP)</td><td>品牌VI页面含STP定位策略展示 → brand_vi.html</td></tr>
+        <tr><td>第一项 · 内容3 (Logo/Slogan)</td><td>品牌Logo源文件 → logo.svg ；品牌VI完整展示 → brand_vi.html</td></tr>
+        <tr><td>第四项 (自媒体视频)</td><td>视频脚本已完稿于报告正文中，实际拍摄需另行完成</td></tr>
+        <tr><td>第五项 (软文广告)</td><td>两篇软文已完整撰写于报告正文中，可发布至公众号/知乎/小红书</td></tr>
+        <tr><td>第六项 (H5活动)</td><td>H5超级团购节互动活动 → h5_super_festival.html</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <p>良久团购 · 网络营销策划与管理 · 课程实验报告配套材料</p>
+  <p style="margin-top:6px;">2025-2026 学年第二学期 · 所有页面均为纯 HTML/CSS/JS，可直接在浏览器中打开</p>
+</footer>
+
+</body>
+</html>

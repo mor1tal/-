@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>良久超级团购节 · 百万家庭狂欢季</title>
+<style>
+  :root {
+    --coral: #FF7F50;
+    --coral-dark: #FF5722;
+    --deepblue: #1B3A5C;
+    --gold: #FFD700;
+    --green: #4CAF50;
+    --pink: #E91E63;
+    --purple: #9C27B0;
+    --radius: 14px;
+    --shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+    background: #e8e5e2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== APP SHELL (mobile simulator) ===== */
+  .app {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    background: #fff;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: 0 0 40px rgba(0,0,0,0.15);
+  }
+
+  /* ===== PAGE SYSTEM ===== */
+  .page {
+    display: none;
+    min-height: 100vh;
+    animation: pageIn 0.35s ease;
+  }
+  .page.active { display: flex; flex-direction: column; }
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ PAGE 1: COVER ============ */
+  .page-cover {
+    background: linear-gradient(165deg, #0F2A45 0%, #1B3A5C 35%, #2D5F8A 65%, #FF7F50 100%);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Particles */
+  .particles { position: absolute; inset: 0; pointer-events: none; }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    bottom: -20px;
+    animation: floatUp 4.5s ease-in infinite;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) scale(1); opacity: 0; }
+    15%  { opacity: 0.85; }
+    70%  { opacity: 0.2; }
+    100% { transform: translateY(-520px) scale(0.3); opacity: 0; }
+  }
+  .particle:nth-child(1) { left: 8%;  animation-delay: 0s;    width: 13px; height: 13px; background: #FFD700; }
+  .particle:nth-child(2) { left: 22%; animation-delay: 0.7s;  width: 8px;  height: 8px;  background: #FF7F50; }
+  .particle:nth-child(3) { left: 38%; animation-delay: 1.5s;  width: 15px; height: 15px; background: #FFD700; }
+  .particle:nth-child(4) { left: 52%; animation-delay: 0.3s;  width: 6px;  height: 6px;  background: #fff; }
+  .particle:nth-child(5) { left: 66%; animation-delay: 2.1s;  width: 10px; height: 10px; background: #FF7F50; }
+  .particle:nth-child(6) { left: 80%; animation-delay: 1.1s;  width: 9px;  height: 9px;  background: #FFD700; }
+  .particle:nth-child(7) { left: 14%; animation-delay: 2.8s;  width: 12px; height: 12px; background: #fff; }
+  .particle:nth-child(8) { left: 58%; animation-delay: 3.4s;  width: 7px;  height: 7px;  background: #FFD700; }
+
+  .cover-icon {
+    width: 90px; height: 90px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 26px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px;
+    margin-bottom: 32px;
+    animation: iconPulse 2.2s ease-in-out infinite;
+    position: relative; z-index: 2;
+    border: 1.5px solid rgba(255,255,255,0.2);
+  }
+  @keyframes iconPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(255,127,80,0.25); }
+    50% { transform: scale(1.07); box-shadow: 0 0 55px rgba(255,127,80,0.55); }
+  }
+  .cover-title {
+    font-size: 2.7em;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 7px;
+    position: relative; z-index: 2;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    line-height: 1.25;
+  }
+  .cover-title .gold {
+    background: linear-gradient(180deg, #FFE082, #FFA000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover-sub {
+    font-size: 1.05em;
+    color: rgba(255,255,255,0.82);
+    margin-top: 14px;
+    letter-spacing: 5px;
+    position: relative; z-index: 2;
+  }
+  .cover-desc {
+    font-size: 0.88em;
+    color: rgba(255,255,255,0.55);
+    margin-top: 6px;
+    letter-spacing: 3px;
+    position: relative; z-index: 2;
+  }
+  .btn-enter {
+    margin-top: 48px;
+    padding: 16px 64px;
+    background: linear-gradient(135deg, #FF7F50, #FF5722);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.15em;
+    font-weight: 700;
+    letter-spacing: 5px;
+    cursor: pointer;
+    position: relative; z-index: 2;
+    box-shadow: 0 8px 32px rgba(255,87,34,0.45);
+    animation: btnGlow 2.2s ease-in-out infinite;
+    transition: transform 0.15s;
+  }
+  .btn-enter:active { transform: scale(0.94); }
+  @keyframes btnGlow {
+    0%, 100% { box-shadow: 0 8px 32px rgba(255,87,34,0.4); }
+    50% { box-shadow: 0 8px 55px rgba(255,87,34,0.75); }
+  }
+  .cover-bottom {
+    position: absolute; bottom: 36px;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.78em;
+    letter-spacing: 4px;
+    z-index: 2;
+  }
+
+  /* ============ PAGE 2: MAIN HALL ============ */
+  .page-main { background: #fff; }
+  .main-header {
+    background: linear-gradient(135deg, #FF7F50, #FF5722);
+    padding: 28px 20px 22px;
+    text-align: center;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .main-header h2 { font-size: 1.45em; letter-spacing: 3px; }
+  .main-header .cd-row {
+    margin-top: 10px;
+    font-size: 0.92em;
+    letter-spacing: 2px;
+    opacity: 0.9;
+  }
+  .main-header .cd-row span {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin: 0 2px;
+    font-weight: 700;
+    font-size: 1.15em;
+    min-width: 28px;
+  }
+
+  /* Banner */
+  .banner {
+    margin: 16px;
+    height: 150px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1B3A5C 0%, #2D5F8A 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner::after {
+    content: '';
+    position: absolute;
+    width: 180px; height: 180px;
+    right: -30px; top: -50px;
+    background: radial-gradient(circle, rgba(255,127,80,0.3), transparent 70%);
+    border-radius: 50%;
+  }
+  .banner-text { color: white; text-align: center; position: relative; z-index: 2; }
+  .banner-text h3 { font-size: 1.5em; letter-spacing: 3px; margin-bottom: 4px; }
+  .banner-text p { font-size: 0.88em; opacity: 0.8; }
+  .banner-badge {
+    position: absolute;
+    top: 12px; right: 14px;
+    background: #FFD700;
+    color: #1B3A5C;
+    padding: 3px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.8em;
+    z-index: 3;
+  }
+
+  /* Activity grid */
+  .act-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 16px;
+    margin-top: 12px;
+  }
+  .act-card {
+    background: white;
+    border-radius: 16px;
+    padding: 26px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: var(--shadow);
+    border: 2px solid transparent;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .act-card:active { transform: scale(0.95); }
+  .act-card .icon { font-size: 2.6em; margin-bottom: 8px; }
+  .act-card h4 { font-size: 1em; color: #1B3A5C; margin-bottom: 3px; letter-spacing: 1px; }
+  .act-card p { font-size: 0.76em; color: #999; line-height: 1.3; }
+  .act-card.c1 { border-top: 3px solid #FF5722; }
+  .act-card.c2 { border-top: 3px solid #E91E63; }
+  .act-card.c3 { border-top: 3px solid #4CAF50; }
+  .act-card.c4 { border-top: 3px solid #9C27B0; }
+  .act-card.c1:active { border-color: #FF5722; background: #FFF5F0; }
+  .act-card.c2:active { border-color: #E91E63; background: #FFF0F5; }
+  .act-card.c3:active { border-color: #4CAF50; background: #F0FFF4; }
+  .act-card.c4:active { border-color: #9C27B0; background: #FDF0FF; }
+
+  /* Bottom row */
+  .bottom-row {
+    margin: 18px 16px 30px;
+    display: flex;
+    gap: 12px;
+  }
+  .btn-outline {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    border: 2px solid #FF7F50;
+    background: white;
+    color: #FF7F50;
+    font-weight: 700;
+    font-size: 0.9em;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: 1px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-outline:active { background: #FFF5F0; }
+
+  /* ============ SUB PAGES (gift, flash, invite, lucky, share) ============ */
+  .page-sub { background: #fff; }
+  .sub-header {
+    padding: 32px 20px 28px;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+  .sub-header.gift-h  { background: linear-gradient(135deg, #FF5722, #FF7F50); }
+  .sub-header.flash-h { background: linear-gradient(135deg, #E91E63, #FF5722); }
+  .sub-header.inv-h   { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
+  .sub-header.lucky-h { background: linear-gradient(135deg, #9C27B0, #7B1FA2); }
+  .sub-header.share-h { background: linear-gradient(135deg, #1B3A5C, #2D5F8A); }
+  .sub-header h2 { font-size: 1.45em; letter-spacing: 3px; }
+  .sub-header .big-price {
+    font-size: 2.8em; font-weight: 900; letter-spacing: 2px; margin: 6px 0;
+  }
+  .sub-header .big-price small { font-size: 0.35em; font-weight: 400; opacity: 0.8; }
+
+  .btn-back {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    cursor: pointer;
+    letter-spacing: 1px;
+    z-index: 5;
+  }
+
+  /* Product grid */
+  .prod-section { padding: 18px 16px; flex: 1; }
+  .prod-section h3 { color: #1B3A5C; margin-bottom: 6px; font-size: 1.05em; }
+  .prod-section .hint { color: #999; font-size: 0.82em; margin-bottom: 14px; }
+  .prod-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding-bottom: 90px;
+  }
+  .prod-item {
+    border: 2px solid #eee;
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    background: white;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .prod-item.selected {
+    border-color: #FF7F50;
+    background: #FFF8F5;
+  }
+  .prod-item.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 8px; right: 10px;
+    background: #FF7F50;
+    color: white;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 13px;
+    line-height: 22px;
+    text-align: center;
+  }
+  .prod-item .emoji { font-size: 2.3em; margin-bottom: 6px; }
+  .prod-item .name { font-size: 0.85em; color: #333; font-weight: 500; margin-bottom: 4px; }
+  .prod-item .price { font-size: 0.82em; }
+  .prod-item .price .orig { color: #bbb; text-decoration: line-through; margin-right: 5px; }
+  .prod-item .price .sale { color: #FF5722; font-weight: 700; font-size: 1.1em; }
+
+  /* Fixed bottom bar in sub pages */
+  .fixed-bar {
+    position: sticky;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 14px 16px;
+    background: linear-gradient(0deg, white 0%, white 65%, rgba(255,255,255,0.95) 100%);
+    z-index: 50;
+    margin-top: auto;
+  }
+  .btn-main {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #FF7F50, #FF5722);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 700;
+    letter-spacing: 3px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(255,87,34,0.3);
+    transition: all 0.2s;
+  }
+  .btn-main:active { transform: scale(0.97); }
+  .btn-main:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+
+  /* Flash items */
+  .flash-list { padding: 16px; }
+  .flash-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  .flash-item .f-img {
+    width: 76px; height: 76px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.4em;
+    flex-shrink: 0;
+  }
+  .flash-item .f-info { flex: 1; min-width: 0; }
+  .flash-item .f-info .f-name { font-weight: 600; color: #333; margin-bottom: 4px; font-size: 0.92em; }
+  .flash-item .f-progress { margin: 6px 0; }
+  .flash-item .f-bar {
+    height: 6px; background: #eee; border-radius: 3px; overflow: hidden;
+  }
+  .flash-item .f-bar div {
+    height: 100%;
+    background: linear-gradient(90deg, #E91E63, #FF5722);
+    border-radius: 3px;
+    transition: width 0.5s;
+  }
+  .flash-item .f-meta { font-size: 0.78em; color: #999; }
+  .flash-item .f-btn {
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #E91E63, #FF5722);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85em;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 1px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .flash-item .f-btn:active { transform: scale(0.93); }
+  .flash-item .f-btn.soldout { background: #ccc; cursor: default; }
+  .flash-item .f-btn.soldout:active { transform: none; }
+
+  /* Flash timer */
+  .flash-timer {
+    font-size: 2.3em;
+    font-weight: 900;
+    letter-spacing: 5px;
+    margin: 8px 0;
+    font-variant-numeric: tabular-nums;
+    font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  }
+
+  /* Invite */
+  .invite-stats {
+    margin: 18px 16px;
+    padding: 20px;
+    background: white;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .invite-stats .big-num {
+    font-size: 2.4em;
+    font-weight: 900;
+    color: #4CAF50;
+  }
+  .invite-steps {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .invite-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  .invite-step .step-num {
+    width: 38px; height: 38px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 1.1em;
+    flex-shrink: 0;
+  }
+  .invite-step .step-text strong { display: block; margin-bottom: 2px; }
+  .invite-step .step-text span { font-size: 0.82em; color: #999; }
+
+  /* Lucky wheel */
+  .wheel-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    position: relative;
+  }
+  .wheel-pointer {
+    width: 0; height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 28px solid #9C27B0;
+    position: relative;
+    z-index: 10;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.25));
+    margin-bottom: -6px;
+  }
+  .wheel-outer {
+    width: 290px; height: 290px;
+    border-radius: 50%;
+    border: 6px solid #9C27B0;
+    box-shadow: 0 4px 28px rgba(156,39,176,0.3);
+    overflow: hidden;
+    position: relative;
+    transition: transform 4.2s cubic-bezier(0.18, 0.65, 0.10, 0.98);
+  }
+  .wheel-bg {
+    width: 100%; height: 100%;
+    position: absolute; inset: 0;
+    background: conic-gradient(
+      #FF7F50 0deg      45deg,
+      #FFD700 45deg     90deg,
+      #FF9E80 90deg    135deg,
+      #FFA726 135deg   180deg,
+      #FFCC80 180deg   225deg,
+      #FF7043 225deg   270deg,
+      #FFE082 270deg   315deg,
+      #FFAB91 315deg   360deg
+    );
+  }
+  .wheel-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 74px; height: 74px;
+    background: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    color: #9C27B0;
+    font-size: 0.95em;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    z-index: 5;
+    letter-spacing: 2px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .lucky-info {
+    text-align: center;
+    color: #888;
+    font-size: 0.85em;
+    padding: 0 16px 20px;
+  }
+
+  /* Share */
+  .share-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 16px;
+    margin: 16px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+  }
+  .share-stat { text-align: center; }
+  .share-stat .val { font-size: 1.7em; font-weight: 900; color: #FF7F50; }
+  .share-stat .val.green { color: #4CAF50; }
+  .share-stat .val.purple { color: #9C27B0; }
+  .share-stat .lbl { font-size: 0.78em; color: #999; margin-top: 3px; }
+  .live-feed {
+    margin: 0 16px 16px;
+    padding: 12px 14px;
+    background: #FFF8F5;
+    border-radius: 10px;
+    font-size: 0.82em;
+    color: #999;
+    max-height: 110px;
+    overflow-y: auto;
+    line-height: 2;
+  }
+  .live-feed .feed-line { color: #888; }
+
+  .share-btns {
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding-bottom: 24px;
+  }
+  .share-btn {
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.95em;
+    cursor: pointer;
+    color: white;
+    letter-spacing: 2px;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.15s;
+  }
+  .share-btn:active { transform: scale(0.94); }
+  .share-btn.wx { background: #07C160; }
+  .share-btn.pyq { background: #1AAD19; }
+  .share-btn.ps { background: #FF7F50; }
+  .share-btn.lk { background: #1B3A5C; }
+
+  /* ===== MODALS ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-box {
+    background: white;
+    border-radius: 18px;
+    padding: 32px 28px;
+    text-align: center;
+    width: 290px;
+    max-width: 90vw;
+    animation: modalPop 0.3s ease;
+  }
+  @keyframes modalPop {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .modal-box .qr-placeholder {
+    width: 140px; height: 140px;
+    margin: 14px auto;
+    background: #f5f5f5;
+    border: 2px dashed #FF7F50;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5em;
+  }
+  .modal-box .btn-close {
+    margin-top: 14px;
+    padding: 10px 34px;
+    background: #FF7F50;
+    color: white;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+
+  /* ===== TOAST ===== */
+  .toast-floating {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.88);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 0.9em;
+    z-index: 600;
+    pointer-events: none;
+    letter-spacing: 1px;
+    animation: toastAnim 2s ease forwards;
+  }
+  @keyframes toastAnim {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    12% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    72% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+  }
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- ==================== PAGE 1: COVER ==================== -->
+  <div class="page page-cover active" id="page-cover">
+    <div class="particles">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div>
+    </div>
+    <div class="cover-icon">🏠</div>
+    <h1 class="cover-title">超级<span class="gold">团购节</span></h1>
+    <p class="cover-sub">百万家庭狂欢季</p>
+    <p class="cover-desc">全场低至 5 折起</p>
+    <button class="btn-enter" onclick="goPage('page-main')">立 即 进 入</button>
+    <p class="cover-bottom">良久团购 · 让每个家庭生活更美好</p>
+  </div>
+
+  <!-- ==================== PAGE 2: MAIN HALL ==================== -->
+  <div class="page page-main" id="page-main">
+    <div class="main-header">
+      <h2>🎉 超级团购节主会场</h2>
+      <div class="cd-row">
+        距活动结束还有 <span id="cd-h">--</span>:<span id="cd-m">--</span>:<span id="cd-s">--</span>
+      </div>
+    </div>
+    <div class="banner">
+      <div class="banner-text">
+        <h3>🔥 爆品直降</h3>
+        <p>护白净洗衣液 · ¥29.9 限量抢</p>
+      </div>
+      <div class="banner-badge">HOT</div>
+    </div>
+    <div class="act-grid">
+      <div class="act-card c1" onclick="goPage('page-gift')">
+        <div class="icon">🎁</div><h4>新人专享礼包</h4><p>9.9元任选3件</p>
+      </div>
+      <div class="act-card c2" onclick="goPage('page-flash')">
+        <div class="icon">⏰</div><h4>限时秒杀</h4><p>每天3场 · 手慢无</p>
+      </div>
+      <div class="act-card c3" onclick="goPage('page-invite')">
+        <div class="icon">🏆</div><h4>邀请有奖</h4><p>邀3人得20元券</p>
+      </div>
+      <div class="act-card c4" onclick="goPage('page-lucky')">
+        <div class="icon">🎲</div><h4>幸运大转盘</h4><p>每日3次 · 100%中奖</p>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <button class="btn-outline" onclick="goPage('page-share')">🎯 我的奖品</button>
+      <button class="btn-outline" onclick="goPage('page-share')">📤 分享有礼</button>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 3: NEW USER GIFT ==================== -->
+  <div class="page page-sub" id="page-gift">
+    <div class="sub-header gift-h">
+      <button class="btn-back" onclick="goPage('page-main')">← 返回</button>
+      <h2>🎁 新人专享礼包</h2>
+      <div class="big-price"><small>¥</small>9.9<small> / 任选3件</small></div>
+      <p style="opacity:0.85;font-size:0.88em;">首次入群用户专享 · 限量5000份</p>
+    </div>
+    <div class="prod-section">
+      <h3>请选择 3 件心仪商品（<span id="sel-count">0</span>/3）</h3>
+      <p class="hint">👇 点击商品卡片选择，每人限领一次</p>
+      <div class="prod-grid" id="prod-grid">
+        <div class="prod-item" data-id="1" onclick="toggleProd(this)"><div class="emoji">🧴</div><div class="name">护白净洗衣液 500ml</div><div class="price"><span class="orig">¥19.9</span><span class="sale">¥3.3</span></div></div>
+        <div class="prod-item" data-id="2" onclick="toggleProd(this)"><div class="emoji">🧻</div><div class="name">竹木春风纸巾 3包</div><div class="price"><span class="orig">¥15.9</span><span class="sale">¥3.3</span></div></div>
+        <div class="prod-item" data-id="3" onclick="toggleProd(this)"><div class="emoji">🧴</div><div class="name">蜜悦护手霜 2支装</div><div class="price"><span class="orig">¥25.9</span><span class="sale">¥3.3</span></div></div>
+        <div class="prod-item" data-id="4" onclick="toggleProd(this)"><div class="emoji">🍪</div><div class="name">良久甄选零食 5款</div><div class="price"><span class="orig">¥29.9</span><span class="sale">¥3.3</span></div></div>
+        <div class="prod-item" data-id="5" onclick="toggleProd(this)"><div class="emoji">🧽</div><div class="name">厨房清洁三件套</div><div class="price"><span class="orig">¥22.9</span><span class="sale">¥3.3</span></div></div>
+        <div class="prod-item" data-id="6" onclick="toggleProd(this)"><div class="emoji">🫧</div><div class="name">良久定制洗发水 200ml</div><div class="price"><span class="orig">¥18.9</span><span class="sale">¥3.3</span></div></div>
+        <div class="prod-item" data-id="7" onclick="toggleProd(this)"><div class="emoji">🧦</div><div class="name">纯棉短袜 3双装</div><div class="price"><span class="orig">¥16.9</span><span class="sale">¥3.3</span></div></div>
+        <div class="prod-item" data-id="8" onclick="toggleProd(this)"><div class="emoji">🍵</div><div class="name">养生花茶 体验装</div><div class="price"><span class="orig">¥20.9</span><span class="sale">¥3.3</span></div></div>
+      </div>
+    </div>
+    <div class="fixed-bar">
+      <button class="btn-main" id="btn-gift" disabled onclick="showQR()">请选择 3 件商品</button>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 4: FLASH SALE ==================== -->
+  <div class="page page-sub" id="page-flash">
+    <div class="sub-header flash-h">
+      <button class="btn-back" onclick="goPage('page-main')">← 返回</button>
+      <h2>⏰ 限时秒杀</h2>
+      <div class="flash-timer" id="flash-timer">--:--:--</div>
+      <p style="opacity:0.85;font-size:0.88em;">下一场准时开抢</p>
+    </div>
+    <div class="flash-list">
+      <div class="flash-item">
+        <div class="f-img">🧴</div>
+        <div class="f-info">
+          <div class="f-name">护白净洗衣液 3kg装</div>
+          <div class="f-progress"><div class="f-bar"><div style="width:72%"></div></div></div>
+          <div class="f-meta">已抢 7200件 · 剩余 2800件</div>
+        </div>
+        <button class="f-btn" onclick="toast('已加入抢购清单！秒杀开始时提醒您')">¥19.9<br>抢</button>
+      </div>
+      <div class="flash-item">
+        <div class="f-img">🧻</div>
+        <div class="f-info">
+          <div class="f-name">竹木春风抽纸 24包</div>
+          <div class="f-progress"><div class="f-bar"><div style="width:45%"></div></div></div>
+          <div class="f-meta">已抢 4500件 · 剩余 5500件</div>
+        </div>
+        <button class="f-btn" onclick="toast('已加入抢购清单！秒杀开始时提醒您')">¥9.9<br>抢</button>
+      </div>
+      <div class="flash-item">
+        <div class="f-img">🧴</div>
+        <div class="f-info">
+          <div class="f-name">蜜悦面膜 5片装</div>
+          <div class="f-progress"><div class="f-bar"><div style="width:91%"></div></div></div>
+          <div class="f-meta">已抢 9100件 · 剩余 900件</div>
+        </div>
+        <button class="f-btn soldout">已抢光</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 5: INVITE ==================== -->
+  <div class="page page-sub" id="page-invite">
+    <div class="sub-header inv-h">
+      <button class="btn-back" onclick="goPage('page-main')">← 返回</button>
+      <h2>🏆 邀请有奖</h2>
+      <p style="opacity:0.85;">邀请好友一起省，你省钱我也省钱</p>
+    </div>
+    <div class="invite-stats">
+      <p style="color:#999;font-size:0.85em;">已有这么多人成功邀请</p>
+      <div class="big-num" id="invite-num">48,927</div>
+      <p style="color:#999;font-size:0.8em;">人获得奖励</p>
+    </div>
+    <div class="invite-steps">
+      <div class="invite-step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>生成你的专属邀请海报</strong><span>带有个人二维码的专属海报</span></div>
+      </div>
+      <div class="invite-step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>分享到朋友圈或微信群</strong><span>让好友通过你的链接进入活动</span></div>
+      </div>
+      <div class="invite-step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>好友入群后你获得奖励</strong><span>每成功邀请1人 = 20元优惠券</span></div>
+      </div>
+    </div>
+    <div style="padding:0 16px 24px;">
+      <button class="btn-main" onclick="toast('海报已生成！长按图片保存后分享给好友')">📸 生成我的专属海报</button>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 6: LUCKY WHEEL ==================== -->
+  <div class="page page-sub" id="page-lucky">
+    <div class="sub-header lucky-h">
+      <button class="btn-back" onclick="goPage('page-main')">← 返回</button>
+      <h2>🎲 幸运大转盘</h2>
+      <p style="opacity:0.85;" id="lucky-remain">今日剩余抽奖：3次</p>
+    </div>
+    <div class="wheel-wrap">
+      <div class="wheel-pointer"></div>
+      <div class="wheel-outer" id="wheel">
+        <div class="wheel-bg"></div>
+        <div class="wheel-center" id="wheel-btn" onclick="spinWheel()">抽奖</div>
+      </div>
+    </div>
+    <div class="lucky-info">
+      <p>🎁 奖品：50元券 | 20元券 | 10元券 | 5元券 | 精美礼品</p>
+      <p style="margin-top:6px;">📤 分享朋友圈可额外增加 1 次抽奖机会</p>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 7: SHARE ==================== -->
+  <div class="page page-sub" id="page-share">
+    <div class="sub-header share-h">
+      <button class="btn-back" onclick="goPage('page-main')">← 返回</button>
+      <h2>📤 分享传播</h2>
+      <p style="opacity:0.85;">分享给好友，一起狂欢省钱！</p>
+    </div>
+    <div class="share-stats">
+      <div class="share-stat"><div class="val" id="share-pv">152,836</div><div class="lbl">人参与狂欢</div></div>
+      <div class="share-stat"><div class="val green" id="share-saved">¥328,960</div><div class="lbl">累计省钱</div></div>
+      <div class="share-stat"><div class="val purple">5级</div><div class="lbl">裂变层级</div></div>
+    </div>
+    <div class="live-feed" id="live-feed">
+      <div class="feed-line">🎉 张** 刚刚省了 ¥42</div>
+      <div class="feed-line">🎉 李** 刚刚省了 ¥18</div>
+      <div class="feed-line">🎉 王** 刚刚省了 ¥56</div>
+      <div class="feed-line">🎉 刘** 邀请了3位好友</div>
+      <div class="feed-line">🎉 陈** 刚刚省了 ¥35</div>
+    </div>
+    <div class="share-btns">
+      <button class="share-btn wx" onclick="toast('已复制链接，打开微信发送给好友')">💬 微信好友</button>
+      <button class="share-btn pyq" onclick="toast('已保存图片，打开朋友圈分享')">🔄 朋友圈</button>
+      <button class="share-btn ps" onclick="toast('正在生成专属海报...')">📸 保存海报</button>
+      <button class="share-btn lk" onclick="toast('链接已复制到剪贴板')">🔗 复制链接</button>
+    </div>
+    <div style="text-align:center;padding:8px 16px 28px;color:#999;font-size:0.82em;">
+      每成功邀请 1 位好友参与活动<br>你将获得 1 次额外抽奖机会
+    </div>
+  </div>
+</div>
+
+<!-- ===== QR MODAL ===== -->
+<div class="modal-overlay" id="qr-modal">
+  <div class="modal-box">
+    <h3 style="color:#1B3A5C;">📱 扫码添加团长</h3>
+    <p style="color:#999;font-size:0.88em;margin-top:4px;">领取你的新人礼包</p>
+    <div class="qr-placeholder">📱<br><span style="font-size:0.35em;">二维码</span></div>
+    <p style="font-size:0.78em;color:#bbb;">长按识别二维码添加</p>
+    <button class="btn-close" onclick="hideQR()">关 闭</button>
+  </div>
+</div>
+
+<!-- ===== WIN MODAL ===== -->
+<div class="modal-overlay" id="win-modal">
+  <div class="modal-box">
+    <div style="font-size:3em;">🎉</div>
+    <h3 style="color:#1B3A5C;margin-top:6px;">恭喜中奖！</h3>
+    <div style="font-size:1.25em;font-weight:700;color:#FF5722;margin:10px 0;" id="win-text"></div>
+    <p style="color:#999;font-size:0.85em;">请添加团长微信领取奖品</p>
+    <button class="btn-close" onclick="hideWin()">知道了</button>
+  </div>
+</div>
+
+<script>
+// ===== PAGE NAVIGATION =====
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  var page = document.getElementById(id);
+  if (page) { page.classList.add('active'); }
+  // Scroll app container to top
+  var app = document.getElementById('app');
+  if (app) app.scrollTop = 0;
+  window.scrollTo(0, 0);
+}
+
+// ===== PRODUCT SELECTION =====
+var selected = new Set();
+function toggleProd(el) {
+  var id = el.dataset.id;
+  if (el.classList.contains('selected')) {
+    el.classList.remove('selected');
+    selected.delete(id);
+  } else {
+    if (selected.size >= 3) { toast('最多选择 3 件商品哦~'); return; }
+    el.classList.add('selected');
+    selected.add(id);
+  }
+  var cnt = document.getElementById('sel-count');
+  if (cnt) cnt.textContent = selected.size;
+  var btn = document.getElementById('btn-gift');
+  if (!btn) return;
+  if (selected.size === 3) {
+    btn.disabled = false;
+    btn.textContent = '🎁 立即领取新人礼包';
+  } else {
+    btn.disabled = true;
+    btn.textContent = '请选择 ' + (3 - selected.size) + ' 件商品';
+  }
+}
+
+// ===== MODALS =====
+function showQR() {
+  var m = document.getElementById('qr-modal');
+  if (m) m.classList.add('show');
+}
+function hideQR() {
+  var m = document.getElementById('qr-modal');
+  if (m) m.classList.remove('show');
+}
+function hideWin() {
+  var m = document.getElementById('win-modal');
+  if (m) m.classList.remove('show');
+}
+
+// ===== LUCKY WHEEL =====
+var luckyLeft = 3;
+var spinning = false;
+function spinWheel() {
+  if (spinning) return;
+  if (luckyLeft <= 0) { toast('今日抽奖次数已用完，分享可额外获得！'); return; }
+  spinning = true;
+  luckyLeft--;
+  var remainEl = document.getElementById('lucky-remain');
+  if (remainEl) remainEl.textContent = '今日剩余抽奖：' + luckyLeft + '次';
+
+  var wheel = document.getElementById('wheel');
+  var rotations = 4 + Math.floor(Math.random() * 3);
+  var extraDeg = Math.floor(Math.random() * 360);
+  var totalDeg = rotations * 360 + extraDeg;
+
+  // Get current transform to accumulate rotations
+  var currentTransform = wheel.style.transform || '';
+  var currentDeg = 0;
+  var match = currentTransform.match(/rotate\(([-\d.]+)deg\)/);
+  if (match) currentDeg = parseFloat(match[1]);
+  var newDeg = currentDeg + totalDeg;
+
+  wheel.style.transform = 'rotate(' + newDeg + 'deg)';
+
+  var prizes = [
+    '🏆 50元无门槛优惠券（大奖！）',
+    '🎫 20元无门槛优惠券',
+    '🎫 10元无门槛优惠券',
+    '🎫 5元无门槛优惠券',
+    '🎁 良久定制小礼品一份',
+    '🎫 20元无门槛优惠券',
+    '🎫 10元无门槛优惠券',
+    '🎫 5元无门槛优惠券'
+  ];
+  // Calculate which segment the pointer lands on
+  // Pointer is at top (0 deg). The wheel rotates clockwise.
+  // The segment at the pointer: (360 - (extraDeg % 360) + 22.5) / 45
+  var normalizedDeg = (360 - (extraDeg % 360) + 360) % 360;
+  var segmentIndex = Math.floor((normalizedDeg + 22.5) / 45) % 8;
+
+  setTimeout(function() {
+    var winText = document.getElementById('win-text');
+    if (winText) winText.textContent = prizes[segmentIndex];
+    var modal = document.getElementById('win-modal');
+    if (modal) modal.classList.add('show');
+    spinning = false;
+  }, 4400);
+}
+
+// ===== TOAST =====
+function toast(msg) {
+  var t = document.createElement('div');
+  t.className = 'toast-floating';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function() {
+    if (t.parentNode) t.parentNode.removeChild(t);
+  }, 2100);
+}
+
+// ===== COUNTDOWN TIMER (main page) =====
+function updateCD() {
+  var now = new Date();
+  var end = new Date(now);
+  end.setHours(23, 59, 59, 999);
+  var diff = Math.max(0, end - now);
+  var h = Math.floor(diff / 3600000);
+  var m = Math.floor((diff % 3600000) / 60000);
+  var s = Math.floor((diff % 60000) / 1000);
+  var elH = document.getElementById('cd-h');
+  var elM = document.getElementById('cd-m');
+  var elS = document.getElementById('cd-s');
+  if (elH) elH.textContent = String(h).padStart(2, '0');
+  if (elM) elM.textContent = String(m).padStart(2, '0');
+  if (elS) elS.textContent = String(s).padStart(2, '0');
+}
+setInterval(updateCD, 1000);
+updateCD();
+
+// ===== FLASH TIMER =====
+function updateFlash() {
+  var now = new Date();
+  var next = new Date(now);
+  var h = now.getHours();
+  if (h < 10)       { next.setHours(10, 0, 0, 0); }
+  else if (h < 15)  { next.setHours(15, 0, 0, 0); }
+  else if (h < 20)  { next.setHours(20, 0, 0, 0); }
+  else              { next.setDate(next.getDate()+1); next.setHours(10, 0, 0, 0); }
+  var diff = Math.max(0, next - now);
+  var hh = Math.floor(diff / 3600000);
+  var mm = Math.floor((diff % 3600000) / 60000);
+  var ss = Math.floor((diff % 60000) / 1000);
+  var ft = document.getElementById('flash-timer');
+  if (ft) ft.textContent = String(hh).padStart(2,'0') + ':' + String(mm).padStart(2,'0') + ':' + String(ss).padStart(2,'0');
+}
+setInterval(updateFlash, 1000);
+updateFlash();
+
+// ===== ANIMATE INVITE COUNTER =====
+var inviteNum = 48927;
+setInterval(function() {
+  inviteNum += Math.floor(Math.random() * 3) + 1;
+  var el = document.getElementById('invite-num');
+  if (el) el.textContent = inviteNum.toLocaleString();
+}, 3500);
+
+// ===== ANIMATE SHARE STATS =====
+var sharePV = 152836;
+var shareSaved = 328960;
+setInterval(function() {
+  sharePV += Math.floor(Math.random() * 5) + 2;
+  shareSaved += Math.floor(Math.random() * 40) + 10;
+  var pvEl = document.getElementById('share-pv');
+  var svEl = document.getElementById('share-saved');
+  if (pvEl) pvEl.textContent = sharePV.toLocaleString();
+  if (svEl) svEl.textContent = '¥' + shareSaved.toLocaleString();
+}, 4000);
+
+// ===== LIVE FEED =====
+setInterval(function() {
+  var feed = document.getElementById('live-feed');
+  if (!feed) return;
+  var names = ['张','李','王','刘','陈','杨','赵','黄','周','吴','孙','马','朱','胡','林'];
+  var actions = ['省了','邀请了','省了','省了','邀请了','省了'];
+  var amounts = ['¥28','¥42','¥15','¥63','¥38','¥19','¥55','3位好友','¥31','¥47','¥22','¥50'];
+  var n = names[Math.floor(Math.random() * names.length)];
+  var act = actions[Math.floor(Math.random() * actions.length)];
+  var amt = amounts[Math.floor(Math.random() * amounts.length)];
+  var line = document.createElement('div');
+  line.className = 'feed-line';
+  line.textContent = '🎉 ' + n + '** ' + act + ' ' + amt + ' · 刚刚';
+  feed.insertBefore(line, feed.firstChild);
+  // Keep max 15 lines
+  while (feed.children.length > 15) { feed.removeChild(feed.lastChild); }
+}, 6000);
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF8C6A"/>
+      <stop offset="100%" style="stop-color:#FF7F50"/>
+    </linearGradient>
+    <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF7F50;stop-opacity:0.9"/>
+      <stop offset="50%" style="stop-color:#FF9E80;stop-opacity:0.7"/>
+      <stop offset="100%" style="stop-color:#1B3A5C;stop-opacity:0.5"/>
+    </linearGradient>
+    <linearGradient id="bagGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF8F5"/>
+      <stop offset="100%" style="stop-color:#FFF0EA"/>
+    </linearGradient>
+    <linearGradient id="doorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2D5F8A"/>
+      <stop offset="100%" style="stop-color:#1B3A5C"/>
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#1B3A5C" flood-opacity="0.10"/>
+    </filter>
+    <filter id="roofShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#E8693A" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Outer ring (decorative) -->
+  <circle cx="250" cy="235" r="225" fill="none" stroke="#FF7F50" stroke-width="0.8" stroke-opacity="0.12"/>
+  <circle cx="250" cy="235" r="215" fill="none" stroke="#1B3A5C" stroke-width="0.5" stroke-opacity="0.06"/>
+
+  <!-- Soft background circle -->
+  <circle cx="250" cy="235" r="200" fill="white" filter="url(#shadow)"/>
+
+  <!-- ===== ICON: House + Heart + Shopping Bag ===== -->
+  <g transform="translate(250, 170)" filter="url(#roofShadow)">
+    <!-- === ROOF === -->
+    <!-- Main roof triangle -->
+    <polygon points="0,-110 -140,50 140,50" fill="url(#roofGrad)" stroke="#E8693A" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Roof inner line (decorative) -->
+    <line x1="-105" y1="20" x2="105" y2="20" stroke="white" stroke-width="1.5" stroke-opacity="0.3"/>
+
+    <!-- === HEART IN ROOF === -->
+    <path d="M0,-60 C12,-78 40,-80 44,-55 C48,-30 0,0 0,0 C0,0 -48,-30 -44,-55 C-40,-80 -12,-78 0,-60Z"
+          fill="white" opacity="0.90"/>
+
+    <!-- Heart inner highlight -->
+    <path d="M-18,-40 C-12,-52 -2,-55 0,-55 C2,-55 12,-52 18,-40 C24,-28 0,-12 0,-12 C0,-12 -24,-28 -18,-40Z"
+          fill="#FF7F50" opacity="0.12"/>
+
+    <!-- === HOUSE BODY === -->
+    <rect x="-130" y="50" width="260" height="195" rx="10" fill="white" stroke="#1B3A5C" stroke-width="2.5"/>
+
+    <!-- === DOOR === -->
+    <rect x="-32" y="175" width="64" height="70" rx="32" fill="url(#doorGrad)" stroke="#1B3A5C" stroke-width="2" opacity="0.90"/>
+    <!-- Door handle -->
+    <circle cx="18" cy="212" r="4" fill="#FFD700" opacity="0.8"/>
+    <!-- Door split line -->
+    <line x1="0" y1="175" x2="0" y2="245" stroke="white" stroke-width="1" stroke-opacity="0.15"/>
+
+    <!-- === SHOPPING BAG (in front of door) === -->
+    <g transform="translate(0, 105)">
+      <!-- Bag handles -->
+      <path d="M-38,-8 C-38,-55 38,-55 38,-8" fill="none" stroke="#FF7F50" stroke-width="5.5" stroke-linecap="round"/>
+      <!-- Bag body -->
+      <rect x="-58" y="-8" width="116" height="105" rx="12" fill="url(#bagGrad)" stroke="#FF7F50" stroke-width="2.5"/>
+      <!-- Bag fold line at top -->
+      <line x1="-58" y1="15" x2="58" y2="15" stroke="#FF7F50" stroke-width="1" stroke-opacity="0.3"/>
+      <!-- Heart on bag -->
+      <path d="M0,35 C10,26 22,26 22,35 C22,44 0,62 0,62 C0,62 -22,44 -22,35 C-22,26 -10,26 0,35Z"
+            fill="#FF7F50"/>
+      <!-- Heart highlight -->
+      <ellipse cx="-7" cy="35" rx="4" ry="2" fill="white" opacity="0.4" transform="rotate(-15,-7,35)"/>
+    </g>
+  </g>
+
+  <!-- === FLOWING ARC (supply chain bridge) === -->
+  <path d="M75,435 C160,455 270,458 370,448 C410,444 440,442 455,440"
+        fill="none" stroke="url(#arcGrad)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Arc accent dots -->
+  <circle cx="135" cy="446" r="3" fill="#FF7F50" opacity="0.5"/>
+  <circle cx="215" cy="451" r="2" fill="#FF9E80" opacity="0.6"/>
+  <circle cx="305" cy="449" r="2.5" fill="#1B3A5C" opacity="0.3"/>
+  <circle cx="380" cy="444" r="2" fill="#FF7F50" opacity="0.4"/>
+
+  <!-- === BRAND NAME (English, safe for all systems) === -->
+  <text x="250" y="480" text-anchor="middle"
+        font-family="'Segoe UI', Arial, Helvetica, sans-serif"
+        font-size="12" font-weight="600" fill="#1B3A5C" letter-spacing="5" opacity="0.55">
+    LIANGJIU GROUP
+  </text>
+</svg>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>良久超级团购节 · 宣传海报集</title>
+<style>
+  :root {
+    --coral: #FF7F50;
+    --coral-dark: #FF5722;
+    --deepblue: #1B3A5C;
+    --deepblue-light: #2D5F8A;
+    --gold: #FFD700;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #1a1a2e;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 50px 30px;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .poster-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .poster-label {
+    color: #999;
+    font-size: 0.85em;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  .poster {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 50px rgba(0,0,0,0.55);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .poster:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.65);
+  }
+
+  /* ===== POSTER 1: 横版公众号首图 ===== */
+  .poster-h {
+    width: 900px; height: 500px;
+    background: linear-gradient(150deg, #0F2A45 0%, #1B3A5C 35%, #2D5F8A 65%, #FF7F50 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .poster-h::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    top: -300px; right: -200px;
+    border: 2px solid rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .poster-h::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    top: -100px; right: 0;
+    border: 2px solid rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .poster-h .content-h {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    height: 100%;
+    padding: 50px 55px;
+  }
+  .poster-h .left-h {
+    flex: 1;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .poster-h .tag-h {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    color: var(--gold);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 0.82em;
+    letter-spacing: 5px;
+    margin-bottom: 22px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,215,0,0.15);
+    align-self: flex-start;
+  }
+  .poster-h h1 {
+    font-size: 3.4em;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 8px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  }
+  .poster-h h1 .gold {
+    background: linear-gradient(180deg, #FFE082, #FFA000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .poster-h .sub-h {
+    font-size: 1.12em;
+    color: rgba(255,255,255,0.78);
+    letter-spacing: 5px;
+    margin-bottom: 26px;
+  }
+  .poster-h .stat-row {
+    display: flex; gap: 20px;
+  }
+  .poster-h .stat-card {
+    text-align: center;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .poster-h .stat-card .num {
+    font-size: 1.35em;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .poster-h .stat-card .lbl {
+    font-size: 0.72em;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 3px;
+    margin-top: 2px;
+  }
+  .poster-h .right-h {
+    flex: 0 0 260px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .poster-h .icon-circle {
+    width: 150px; height: 150px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 65px;
+    margin-bottom: 16px;
+    border: 2px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 50px rgba(255,127,80,0.25);
+  }
+  .poster-h .brand-name {
+    color: white; font-size: 1.25em; font-weight: 700; letter-spacing: 5px;
+  }
+  .poster-h .brand-sub {
+    color: rgba(255,255,255,0.55); font-size: 0.78em; letter-spacing: 3px; margin-top: 3px;
+  }
+  .poster-h .bottom-strip {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 14px 55px;
+    background: rgba(0,0,0,0.28);
+    backdrop-filter: blur(10px);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .poster-h .bottom-strip .date { color: var(--gold); font-weight: 600; letter-spacing: 4px; font-size: 0.9em; }
+  .poster-h .bottom-strip .cta { color: rgba(255,255,255,0.75); font-size: 0.85em; letter-spacing: 3px; }
+
+  /* ===== POSTER 2: 竖版消费者推广 ===== */
+  .poster-v1 {
+    width: 400px; height: 700px;
+    background: linear-gradient(180deg, #FFF5F0 0%, #FFFFFF 22%, #FFFFFF 78%, #1B3A5C 100%);
+    position: relative; overflow: hidden;
+  }
+  .poster-v1 .glow-top {
+    position: absolute; top: -70px; left: 50%; transform: translateX(-50%);
+    width: 320px; height: 160px;
+    background: radial-gradient(circle, rgba(255,127,80,0.25), transparent 70%);
+  }
+  .poster-v1 .inner {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 38px 28px; height: 100%; text-align: center;
+  }
+  .poster-v1 .v1-icon {
+    width: 96px; height: 96px;
+    background: linear-gradient(135deg, #FF7F50, #FF5722);
+    border-radius: 26px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+    margin-bottom: 18px;
+    box-shadow: 0 12px 36px rgba(255,87,34,0.35);
+  }
+  .poster-v1 .v1-tag {
+    background: #FFF0E8; color: #FF5722;
+    padding: 5px 20px; border-radius: 20px;
+    font-size: 0.82em; font-weight: 600; letter-spacing: 4px; margin-bottom: 12px;
+  }
+  .poster-v1 h2 {
+    font-size: 1.9em; font-weight: 900; color: #1B3A5C; letter-spacing: 5px; margin-bottom: 4px;
+  }
+  .poster-v1 .v1-sub {
+    font-size: 0.95em; color: #FF7F50; letter-spacing: 3px; font-weight: 500; margin-bottom: 18px;
+  }
+  .poster-v1 .price-box {
+    width: 100%; padding: 18px;
+    background: linear-gradient(135deg, #1B3A5C, #2D5F8A);
+    border-radius: 14px; color: white; margin-bottom: 18px;
+  }
+  .poster-v1 .price-box .big {
+    font-size: 2.1em; font-weight: 900; color: #FFD700; letter-spacing: 2px;
+  }
+  .poster-v1 .price-box .big small { font-size: 0.38em; font-weight: 400; color: rgba(255,255,255,0.7); }
+  .poster-v1 .price-box .tagline { font-size: 0.78em; opacity: 0.7; margin-top: 3px; }
+  .poster-v1 .feats {
+    width: 100%; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;
+  }
+  .poster-v1 .feat {
+    display: flex; align-items: center; gap: 10px; font-size: 0.9em; color: #555;
+  }
+  .poster-v1 .feat .chk {
+    width: 22px; height: 22px; background: #4CAF50; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 0.75em; flex-shrink: 0;
+  }
+  .poster-v1 .qr-row {
+    margin-top: auto; width: 100%;
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px; background: white; border-radius: 14px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+  }
+  .poster-v1 .qr-row .qr-icon {
+    width: 72px; height: 72px; background: #f5f5f5; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 2.2em; flex-shrink: 0;
+  }
+  .poster-v1 .qr-row .qr-info { text-align: left; font-size: 0.82em; color: #888; line-height: 1.5; }
+  .poster-v1 .qr-row .qr-info strong { color: #1B3A5C; }
+  .poster-v1 .v1-foot {
+    margin-top: 8px; color: rgba(255,255,255,0.6); font-size: 0.75em; letter-spacing: 2px;
+  }
+
+  /* ===== POSTER 3: 竖版团长招募 ===== */
+  .poster-v2 {
+    width: 400px; height: 700px;
+    background: linear-gradient(180deg, #0F2A45 0%, #1B3A5C 50%, #FF7F50 100%);
+    position: relative; overflow: hidden;
+  }
+  .poster-v2::before {
+    content: '';
+    position: absolute; top: -100px; right: -80px;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(255,127,80,0.18), transparent 70%);
+  }
+  .poster-v2 .inner2 {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 40px 28px; height: 100%; text-align: center; color: white;
+  }
+  .poster-v2 .tag-r {
+    background: rgba(255,255,255,0.12); padding: 5px 18px;
+    border-radius: 20px; font-size: 0.78em; letter-spacing: 5px;
+    margin-bottom: 20px; backdrop-filter: blur(5px);
+  }
+  .poster-v2 h2 { font-size: 2.1em; font-weight: 900; letter-spacing: 5px; line-height: 1.25; margin-bottom: 6px; }
+  .poster-v2 h2 .hl { color: #FFD700; }
+  .poster-v2 .sub-r { font-size: 0.9em; opacity: 0.75; letter-spacing: 4px; margin-bottom: 22px; }
+  .poster-v2 .sell-grid {
+    width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px;
+  }
+  .poster-v2 .sell {
+    background: rgba(255,255,255,0.07); padding: 16px; border-radius: 12px;
+    backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.08);
+  }
+  .poster-v2 .sell .si { font-size: 1.7em; margin-bottom: 5px; }
+  .poster-v2 .sell .st { font-weight: 700; font-size: 0.9em; letter-spacing: 2px; }
+  .poster-v2 .sell .sd { font-size: 0.72em; opacity: 0.65; margin-top: 3px; }
+  .poster-v2 .cta-box {
+    width: 100%; padding: 16px; background: rgba(255,255,255,0.08);
+    border-radius: 14px; backdrop-filter: blur(5px); margin-bottom: 18px;
+  }
+  .poster-v2 .cta-box .ct { font-size: 1.05em; font-weight: 700; letter-spacing: 3px; color: #FFD700; margin-bottom: 4px; }
+  .poster-v2 .cta-box .ci { font-size: 0.8em; opacity: 0.7; }
+  .poster-v2 .btn-join {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #1B3A5C; border: none; border-radius: 14px;
+    font-size: 1.05em; font-weight: 900; letter-spacing: 5px;
+    cursor: pointer; box-shadow: 0 8px 28px rgba(255,215,0,0.3);
+    margin-bottom: 14px; transition: transform 0.2s;
+  }
+  .poster-v2 .btn-join:hover { transform: scale(1.02); }
+  .poster-v2 .ft { font-size: 0.75em; opacity: 0.5; letter-spacing: 2px; }
+</style>
+</head>
+<body>
+
+<!-- POSTER 1: 横版 -->
+<div class="poster-wrapper">
+  <span class="poster-label">📢 横版 · 公众号首图 / 视频号封面</span>
+  <div class="poster poster-h">
+    <div class="content-h">
+      <div class="left-h">
+        <span class="tag-h">✨ 良久团购 · 年度品牌钜惠</span>
+        <h1>超级<span class="gold">团购节</span></h1>
+        <p class="sub-h">百万家庭狂欢季 · 全场低至 5 折起</p>
+        <div class="stat-row">
+          <div class="stat-card"><div class="num">400+</div><div class="lbl">定制爆品</div></div>
+          <div class="stat-card"><div class="num">低至5折</div><div class="lbl">超值优惠</div></div>
+          <div class="stat-card"><div class="num">限时3天</div><div class="lbl">狂欢倒计时</div></div>
+        </div>
+      </div>
+      <div class="right-h">
+        <div class="icon-circle">🏠</div>
+        <div class="brand-name">良久团购</div>
+        <div class="brand-sub">让每个家庭生活更美好</div>
+      </div>
+    </div>
+    <div class="bottom-strip">
+      <span class="date">📅 2025-2026 学年 · 课程实验项目</span>
+      <span class="cta">👉 扫码入群 · 锁定超低价</span>
+    </div>
+  </div>
+</div>
+
+<!-- POSTER 2: 竖版消费者推广 -->
+<div class="poster-wrapper">
+  <span class="poster-label">📱 竖版 · 朋友圈 / 小红书推广</span>
+  <div class="poster poster-v1">
+    <div class="glow-top"></div>
+    <div class="inner">
+      <div class="v1-icon">🛒</div>
+      <div class="v1-tag">限 时 狂 欢</div>
+      <h2>超级团购节</h2>
+      <p class="v1-sub">好货不贵 · 良久到位</p>
+      <div class="price-box">
+        <p style="opacity:0.8;font-size:0.82em;">新人专享福利</p>
+        <div class="big"><small>¥</small>9.9<small> / 任选3件</small></div>
+        <p class="tagline">全场低至5折 · 每日3场秒杀</p>
+      </div>
+      <div class="feats">
+        <div class="feat"><span class="chk">✓</span> 400+ 定制爆品，从工厂直通家庭</div>
+        <div class="feat"><span class="chk">✓</span> 90% 产品不超过 100 元</div>
+        <div class="feat"><span class="chk">✓</span> 每日 3 场限时秒杀 · 手慢无</div>
+        <div class="feat"><span class="chk">✓</span> 幸运大转盘 · 100% 中奖</div>
+      </div>
+      <div class="qr-row">
+        <div class="qr-icon">📱</div>
+        <div class="qr-info">
+          <strong>长按扫码 → 加入团购群</strong><br>
+          领新人 9.9 元礼包<br>
+          已有 <strong style="color:#FF5722;">15万+</strong> 家庭参与
+        </div>
+      </div>
+      <p class="v1-foot">良久团购 · 让每个家庭生活更美好</p>
+    </div>
+  </div>
+</div>
+
+<!-- POSTER 3: 竖版团长招募 -->
+<div class="poster-wrapper">
+  <span class="poster-label">💼 竖版 · 团长招募专用</span>
+  <div class="poster poster-v2">
+    <div class="inner2">
+      <div class="tag-r">🔥 团长招募计划</div>
+      <h2>良久，<br>让努力的<span class="hl">人</span><br>被看见</h2>
+      <p class="sub-r">一部手机 · 一个群 · 一份事业</p>
+      <div class="sell-grid">
+        <div class="sell"><div class="si">🚫</div><div class="st">零门槛</div><div class="sd">无需囤货/投资/店面</div></div>
+        <div class="sell"><div class="si">📱</div><div class="st">一部手机</div><div class="sd">200人群即可开启</div></div>
+        <div class="sell"><div class="si">💰</div><div class="st">自用省钱</div><div class="sd">分享赚钱收益稳定</div></div>
+        <div class="sell"><div class="si">🎓</div><div class="st">全程培训</div><div class="sd">三步起号法手把手教</div></div>
+      </div>
+      <div class="cta-box">
+        <div class="ct">🌟 已有 40 万+ 团长加入</div>
+        <div class="ci">覆盖超 1 亿家庭用户 · 累计帮扶 10 万+ 个体创业</div>
+      </div>
+      <button class="btn-join">📲 立即加入良久</button>
+      <p class="ft">良久团购 · 全球家庭健康美好生活服务引领者</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
