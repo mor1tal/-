@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>良久团购 - 品牌视觉识别系统（VI）</title>
+<style>
+  :root {
+    --coral: #FF7F50;
+    --coral-dark: #E8693A;
+    --deepblue: #1B3A5C;
+    --deepblue-light: #2D5F8A;
+    --bg: #f8f6f3;
+    --white: #ffffff;
+    --text: #333333;
+    --text-light: #888888;
+    --border: #e8e5e2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HERO HEADER ===== */
+  .hero {
+    background: linear-gradient(160deg, #0F2A45 0%, #1B3A5C 55%, #2D5F8A 100%);
+    color: white;
+    padding: 70px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    top: -200px; right: -150px;
+    background: radial-gradient(circle, rgba(255,127,80,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    bottom: -150px; left: -100px;
+    background: radial-gradient(circle, rgba(255,127,80,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 6px 22px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    letter-spacing: 5px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(5px);
+  }
+  .hero h1 {
+    font-size: 3em;
+    font-weight: 900;
+    letter-spacing: 8px;
+    margin-bottom: 8px;
+  }
+  .hero h1 .accent { color: var(--coral); }
+  .hero .subtitle {
+    font-size: 1.15em;
+    opacity: 0.75;
+    letter-spacing: 6px;
+    font-weight: 300;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container { max-width: 1000px; margin: 0 auto; padding: -40px 20px 60px; position: relative; z-index: 3; }
+
+  /* ===== FULL LOGO SHOWCASE (HTML rendered, always correct) ===== */
+  .logo-showcase-section {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 50px 40px;
+    margin-top: -40px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  .logo-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 30px;
+  }
+  .logo-icon-area {
+    position: relative;
+    width: 160px; height: 160px;
+    flex-shrink: 0;
+  }
+  .logo-icon-inner {
+    width: 160px; height: 160px;
+    background: white;
+    border-radius: 36px;
+    box-shadow: 0 8px 40px rgba(27,58,92,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-icon-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 100px;
+    background: linear-gradient(180deg, #FF7F50, #FF5722);
+    border-radius: 0 0 50% 50%;
+    transform: scaleX(1.4);
+  }
+  .logo-icon-inner::after {
+    content: '';
+    position: absolute;
+    width: 30px; height: 30px;
+    background: white;
+    border-radius: 50%;
+    top: 35px;
+    /* Heart shape via box-shadow trick */
+    box-shadow:
+      15px -8px 0 white,
+      -15px -8px 0 white,
+      0 -12px 0 white;
+  }
+  .logo-icon-house {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 72px;
+    background: white;
+    border: 2.5px solid #1B3A5C;
+    border-radius: 4px;
+    z-index: 2;
+  }
+  .logo-icon-door {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 42px;
+    background: #1B3A5C;
+    border-radius: 14px 14px 0 0;
+    opacity: 0.15;
+    z-index: 3;
+  }
+  .logo-icon-bag {
+    position: absolute;
+    bottom: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 54px;
+    height: 50px;
+    background: #FFF5F0;
+    border: 2.5px solid #FF7F50;
+    border-radius: 8px;
+    z-index: 4;
+  }
+  .logo-icon-bag::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 8px;
+    width: 34px;
+    height: 20px;
+    border: 3px solid #FF7F50;
+    border-bottom: none;
+    border-radius: 16px 16px 0 0;
+  }
+  .logo-icon-heart {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px; height: 16px;
+    background: #FF7F50;
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 5;
+  }
+  .logo-icon-heart::before,
+  .logo-icon-heart::after {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    background: #FF7F50;
+    border-radius: 50%;
+  }
+  .logo-icon-heart::before { top: -8px; left: 0; }
+  .logo-icon-heart::after { top: 0; left: -8px; }
+
+  .logo-text-area {
+    text-align: left;
+  }
+  .logo-text-area .brand-name {
+    font-size: 3.2em;
+    font-weight: 900;
+    color: var(--deepblue);
+    letter-spacing: 10px;
+    line-height: 1.1;
+  }
+  .logo-text-area .brand-name .sub {
+    font-size: 0.5em;
+    font-weight: 400;
+    color: var(--coral);
+    letter-spacing: 14px;
+    display: block;
+    margin-top: 4px;
+  }
+  .logo-text-area .tagline {
+    margin-top: 12px;
+    font-size: 1em;
+    color: #999;
+    letter-spacing: 5px;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 36px 40px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .section-title {
+    font-size: 1.35em;
+    font-weight: 700;
+    color: var(--deepblue);
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--coral);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 2px;
+  }
+  .section-title .dot {
+    width: 10px; height: 10px;
+    background: var(--coral);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Color palette */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .color-card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .color-card .swatch {
+    height: 110px;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: white;
+  }
+  .color-card .swatch.light-text { color: #333; }
+  .color-card .info {
+    padding: 12px 14px;
+    background: white;
+    font-size: 0.82em;
+  }
+  .color-card .info code {
+    display: block;
+    color: #999;
+    font-size: 0.95em;
+    margin-top: 2px;
+  }
+
+  /* Slogan */
+  .slogan-list { display: flex; flex-direction: column; gap: 16px; }
+  .slogan-card {
+    padding: 22px 28px;
+    border-radius: 12px;
+    border-left: 4px solid var(--coral);
+    background: linear-gradient(135deg, #FFF8F5 0%, white 100%);
+    transition: all 0.2s;
+  }
+  .slogan-card:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(255,127,80,0.1); }
+  .slogan-card h3 { color: var(--coral); font-size: 1.2em; margin-bottom: 4px; letter-spacing: 2px; }
+  .slogan-card .usage { font-size: 0.85em; color: var(--text-light); margin-top: 4px; }
+
+  /* Typography */
+  .typo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .typo-item { background: #fafafa; padding: 22px; border-radius: 12px; }
+  .typo-item .label { font-size: 0.82em; color: var(--text-light); margin-bottom: 8px; letter-spacing: 1px; }
+  .typo-item .sample { font-size: 1.6em; font-weight: 700; color: var(--deepblue); letter-spacing: 2px; }
+  .typo-item .sample.body { font-weight: 400; font-size: 1em; line-height: 2; }
+
+  /* Keywords */
+  .kw-list { display: flex; flex-wrap: wrap; gap: 12px; }
+  .kw-tag {
+    padding: 10px 26px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95em;
+    letter-spacing: 3px;
+    color: white;
+    transition: transform 0.2s;
+  }
+  .kw-tag:hover { transform: scale(1.05); }
+  .kw-tag:nth-child(1) { background: var(--coral); }
+  .kw-tag:nth-child(2) { background: var(--deepblue); }
+  .kw-tag:nth-child(3) { background: var(--coral-dark); }
+  .kw-tag:nth-child(4) { background: var(--deepblue-light); }
+  .kw-tag:nth-child(5) { background: var(--coral); }
+  .kw-tag:nth-child(6) { background: var(--deepblue); }
+
+  /* VI Applications */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
+  .app-card {
+    padding: 28px 16px;
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.25s;
+    cursor: default;
+  }
+  .app-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+  .app-card .icon { font-size: 2.6em; margin-bottom: 10px; }
+  .app-card .label { font-size: 0.85em; color: #666; letter-spacing: 1px; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 36px 20px;
+    background: var(--deepblue);
+    color: rgba(255,255,255,0.55);
+    font-size: 0.85em;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2em; }
+    .logo-display { flex-direction: column; text-align: center; }
+    .logo-text-area { text-align: center; }
+    .section { padding: 24px 20px; }
+    .typo-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="badge">2025-2026 学年第二学期</div>
+    <h1>良久<span class="accent">团购</span></h1>
+    <p class="subtitle">品牌视觉识别系统 · Brand VI Manual</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ===== FULL LOGO RENDERED IN HTML ===== -->
+  <section class="logo-showcase-section">
+    <h2 style="text-align:center;color:var(--deepblue);letter-spacing:3px;margin-bottom:8px;">品牌完整标识</h2>
+    <p style="text-align:center;color:var(--text-light);margin-bottom:24px;letter-spacing:2px;">Full Logo · 图形 + 文字组合</p>
+
+    <!-- Full logo display (HTML, always renders correctly) -->
+    <div class="logo-display">
+      <div class="logo-icon-area">
+        <div class="logo-icon-inner">
+          <div class="logo-icon-house"></div>
+          <div class="logo-icon-door"></div>
+          <div class="logo-icon-bag"></div>
+          <div class="logo-icon-heart"></div>
+        </div>
+      </div>
+      <div class="logo-text-area">
+        <div class="brand-name">
+          良久
+          <span class="sub">团购</span>
+        </div>
+        <div class="tagline">让每个家庭生活更美好</div>
+      </div>
+    </div>
+
+    <!-- Design rationale -->
+    <div style="background:#f9f9f9;border-radius:12px;padding:24px;line-height:2;">
+      <h4 style="color:var(--deepblue);margin-bottom:10px;">🎨 设计理念</h4>
+      <p style="color:#666;">
+        品牌标识以<strong style="color:var(--coral);">"房子/家"</strong>的轮廓为基底，
+        屋顶融入<strong style="color:var(--coral);">"爱心"</strong>负形，
+        居中嵌入<strong style="color:var(--coral);">"购物袋"</strong>图形，
+        三者合一寓意<strong>"为家庭提供有温度的美好生活"</strong>。
+        底部流畅弧线象征"连接田间与餐桌、工厂与家庭"的供应链桥梁。
+        橙色传递温暖与活力，深蓝传递信赖与专业。
+      </p>
+    </div>
+
+    <!-- Icon mark and simplified versions -->
+    <div style="display:flex;gap:20px;margin-top:24px;flex-wrap:wrap;justify-content:center;">
+      <div style="text-align:center;padding:20px;border:2px dashed #ddd;border-radius:12px;flex:1;min-width:180px;">
+        <div style="font-size:3em;">🏠</div>
+        <div style="margin-top:8px;font-weight:600;color:var(--deepblue);">完整版 Logo</div>
+        <div style="font-size:0.8em;color:#999;">横版组合 · 品牌主标识</div>
+      </div>
+      <div style="text-align:center;padding:20px;background:var(--deepblue);border-radius:12px;flex:1;min-width:180px;">
+        <div style="width:60px;height:60px;background:linear-gradient(135deg,var(--coral),var(--coral-dark));border-radius:16px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:1.8em;">🏠</div>
+        <div style="margin-top:8px;font-weight:600;color:white;">简化版图标</div>
+        <div style="font-size:0.8em;color:rgba(255,255,255,0.6);">社群头像 · 小程序图标</div>
+      </div>
+      <div style="text-align:center;padding:20px;border:2px dashed #ddd;border-radius:12px;flex:1;min-width:180px;">
+        <div style="font-size:3em;">📦</div>
+        <div style="margin-top:8px;font-weight:600;color:var(--deepblue);">纯图形标记</div>
+        <div style="font-size:0.8em;color:#999;">产品包装 · 水印 · favicon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COLOR SYSTEM ===== -->
+  <section class="section">
+    <h2 class="section-title"><span class="dot"></span>品牌色彩系统</h2>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="swatch" style="background:#FF7F50;">主色 · 暖橙</div>
+        <div class="info">Coral Orange<code>#FF7F50 · CMYK(0,50,69,0)</code></div>
+      </div>
+      <div class="color-card">
+        <div class="swatch" style="background:#1B3A5C;">主色 · 深蓝</div>
+        <div class="info">Deep Blue<code>#1B3A5C · CMYK(71,37,0,64)</code></div>
+      </div>
+      <div class="color-card">
+        <div class="swatch light-text" style="background:#FF9E80;">辅助 · 浅橙</div>
+        <div class="info">Light Coral<code>#FF9E80</code></div>
+      </div>
+      <div class="color-card">
+        <div class="swatch" style="background:#2D5F8A;">辅助 · 中蓝</div>
+        <div class="info">Medium Blue<code>#2D5F8A</code></div>
+      </div>
+      <div class="color-card">
+        <div class="swatch light-text" style="background:#F5F5F5;">中性 · 浅灰</div>
+        <div class="info">Light Gray<code>#F5F5F5</code></div>
+      </div>
+      <div class="color-card">
+        <div class="swatch light-text" style="background:#FFFFFF;">中性 · 白</div>
+        <div class="info">White<code>#FFFFFF</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SLOGAN ===== -->
+  <section class="section">
+    <h2 class="section-title"><span class="dot"></span>品牌口号体系（Slogan）</h2>
+    <div class="slogan-list">
+      <div class="slogan-card">
+        <h3>"让每个家庭生活更美好"</h3>
+        <p>🏷️ 主Slogan — 呼应企业愿景"全球家庭健康美好生活服务引领者"，覆盖全场景使用</p>
+      </div>
+      <div class="slogan-card">
+        <h3>"好货不贵，良久到位"</h3>
+        <p class="usage">🛒 面向消费者 · 8字口诀，朗朗上口，突出"极致低价好货"核心卖点</p>
+      </div>
+      <div class="slogan-card">
+        <h3>"良久，让努力的人被看见"</h3>
+        <p class="usage">💪 面向团长创业者 · 情感共鸣型Slogan，传递"普通人也可以成功"的价值主张</p>
+      </div>
+      <div class="slogan-card">
+        <h3>"从田间到餐桌，只差一个良久"</h3>
+        <p class="usage">🌾 面向农产品合作 · 强调源头直采的供应链优势和助农情怀</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TYPOGRAPHY ===== -->
+  <section class="section">
+    <h2 class="section-title"><span class="dot"></span>品牌字体规范</h2>
+    <div class="typo-row">
+      <div class="typo-item">
+        <div class="label">标题字体 · 阿里巴巴普惠体 Bold</div>
+        <div class="sample">良久团购 · 让每个家庭生活更美好</div>
+      </div>
+      <div class="typo-item">
+        <div class="label">正文字体 · 思源黑体 Regular</div>
+        <div class="sample body">
+          良久团购始创于2013年，总部位于浙江义乌，是一家立足于私域电商的社群团购平台。秉承"极致低价"理念，为亿万家庭提供一站式生活解决方案。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BRAND KEYWORDS ===== -->
+  <section class="section">
+    <h2 class="section-title"><span class="dot"></span>品牌调性</h2>
+    <div class="kw-list">
+      <span class="kw-tag">温暖</span>
+      <span class="kw-tag">信赖</span>
+      <span class="kw-tag">实惠</span>
+      <span class="kw-tag">家庭</span>
+      <span class="kw-tag">创业</span>
+      <span class="kw-tag">美好</span>
+    </div>
+    <p style="margin-top:20px;color:var(--text-light);line-height:1.8;">
+      <strong style="color:var(--deepblue);">品牌声音（Tone of Voice）：</strong>
+      亲切但不随意，专业但不冷冰，<br>像朋友推荐好物一样自然真诚，让每一次沟通都有温度。
+    </p>
+  </section>
+
+  <!-- ===== VI APPLICATIONS ===== -->
+  <section class="section">
+    <h2 class="section-title"><span class="dot"></span>VI 应用场景</h2>
+    <div class="app-grid">
+      <div class="app-card" style="background:#f5f5f5;"><div class="icon">📱</div><div class="label">社群头像</div></div>
+      <div class="app-card" style="background:#fff;border:1px solid #eee;"><div class="icon">📦</div><div class="label">产品包装</div></div>
+      <div class="app-card" style="background:linear-gradient(135deg,#FF7F50,#E8693A);color:white;"><div class="icon">📢</div><div class="label" style="color:rgba(255,255,255,0.9);">宣传海报</div></div>
+      <div class="app-card" style="background:#fff;"><div class="icon">🚚</div><div class="label">快递箱体</div></div>
+      <div class="app-card" style="background:#1B3A5C;color:white;"><div class="icon">👕</div><div class="label" style="color:rgba(255,255,255,0.9);">员工服饰</div></div>
+      <div class="app-card" style="background:#f5f5f5;"><div class="icon">🏷️</div><div class="label">价格标签</div></div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <p>良久团购 · 品牌视觉识别系统</p>
+  <p style="margin-top:6px;">2025-2026学年第二学期 · 网络营销课程实验报告</p>
+</footer>
+
+</body>
+</html>
