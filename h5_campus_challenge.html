@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>良久团购·校园省钱挑战赛</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #fff5f0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ========== 容器 ========== */
+        .h5-container {
+            max-width: 420px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        /* ========== 每一页 ========== */
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 28px;
+            position: relative;
+            text-align: center;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%,100% { transform: scale(1); }
+            50%     { transform: scale(1.06); }
+        }
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50%     { transform: translateY(-8px); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes bounceIn {
+            0%   { opacity: 0; transform: scale(0.3); }
+            50%  { opacity: 1; transform: scale(1.05); }
+            70%  { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        @keyframes countUp {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* ========== 第1页：封面 ========== */
+        .cover-bg {
+            background: linear-gradient(180deg, #FF7F00 0%, #FF9A44 40%, #fff5f0 100%);
+        }
+        .cover-icon {
+            font-size: 80px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .cover-title {
+            font-size: 36px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 3px 12px rgba(0,0,0,0.2);
+            margin: 16px 0 8px;
+            letter-spacing: 2px;
+        }
+        .cover-subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.92);
+            margin-bottom: 30px;
+        }
+        .cover-btn {
+            display: inline-block;
+            padding: 14px 48px;
+            background: #fff;
+            color: #FF7F00;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 40px;
+            text-decoration: none;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 6px 24px rgba(255,127,0,0.35);
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+        }
+        .cover-badge {
+            margin-top: 20px;
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+        }
+
+        /* ========== 第2页：测试题 ========== */
+        .quiz-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        .quiz-subtitle {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 24px;
+        }
+        .quiz-q {
+            width: 100%;
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            text-align: left;
+        }
+        .quiz-q p {
+            font-size: 15px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 12px;
+        }
+        .quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .quiz-opt {
+            flex: 1 1 auto;
+            min-width: 70px;
+            padding: 10px 0;
+            text-align: center;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fafafa;
+            user-select: none;
+        }
+        .quiz-opt.selected {
+            border-color: #FF7F00;
+            background: #FFF3E8;
+            color: #FF7F00;
+            font-weight: 600;
+        }
+        .quiz-next-btn {
+            margin-top: 10px;
+            padding: 12px 40px;
+            background: #FF7F00;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .quiz-next-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ========== 第3页：结果页 ========== */
+        .result-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        .result-stars {
+            font-size: 48px;
+            margin: 12px 0;
+        }
+        .result-bar-wrap {
+            width: 100%;
+            background: #eee;
+            border-radius: 10px;
+            height: 18px;
+            margin: 16px 0;
+            overflow: hidden;
+        }
+        .result-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF7F00, #FFB347);
+            border-radius: 10px;
+            transition: width 1.2s ease;
+        }
+        .result-save {
+            font-size: 28px;
+            font-weight: 900;
+            color: #FF7F00;
+            margin: 8px 0;
+        }
+        .result-tip {
+            font-size: 14px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        /* ========== 第4页：解决方案 ========== */
+        .solution-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 24px;
+        }
+        .step-row {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .step-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF7F00, #FF9A44);
+            color: #fff;
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            animation: bounceIn 0.8s ease forwards;
+            opacity: 0;
+        }
+        .step-circle:nth-child(1) { animation-delay: 0.1s; }
+        .step-circle.show { opacity: 1; }
+        .step-arrow {
+            font-size: 28px;
+            color: #FF7F00;
+            margin: 0 6px;
+            flex-shrink: 0;
+        }
+        .step-text {
+            background: #FFF3E8;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #555;
+            text-align: left;
+            flex: 1;
+            min-width: 0;
+            animation: slideInLeft 0.6s ease forwards;
+            opacity: 0;
+        }
+        .step-text.show { opacity: 1; }
+        .step-text:nth-of-type(1) { animation-delay: 0.2s; }
+        .step-text:nth-of-type(2) { animation-delay: 0.4s; }
+        .step-text:nth-of-type(3) { animation-delay: 0.6s; }
+        .sell-points {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            width: 100%;
+        }
+        .sell-point {
+            flex: 1;
+            background: #fff;
+            border-radius: 14px;
+            padding: 16px 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .sell-point .icon { font-size: 32px; margin-bottom: 6px; }
+        .sell-point .label { font-size: 13px; color: #666; font-weight: 500; }
+
+        /* ========== 第5页：活动页 ========== */
+        .activity-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .activity-subtitle {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .prize-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .prize-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 14px;
+            padding: 12px 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            text-align: left;
+        }
+        .prize-icon {
+            font-size: 36px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .prize-info .name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #444;
+        }
+        .prize-info .count {
+            font-size: 12px;
+            color: #999;
+        }
+        .prize-medal { font-size: 28px; margin-left: auto; }
+        .qr-placeholder {
+            width: 160px;
+            height: 160px;
+            background: #f5f5f5;
+            border: 2px dashed #ddd;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #bbb;
+            font-size: 13px;
+            margin: 16px auto;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .qr-placeholder .qr-icon { font-size: 48px; }
+        .join-btn {
+            padding: 14px 44px;
+            background: linear-gradient(135deg, #FF7F00, #FF9A44);
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(255,127,0,0.3);
+            letter-spacing: 1px;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        /* ========== 第6页：分享页 ========== */
+        .share-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .share-card {
+            width: 100%;
+            background: linear-gradient(135deg, #FF7F00, #FF9A44);
+            border-radius: 20px;
+            padding: 28px 20px;
+            color: #fff;
+            margin: 18px 0;
+            box-shadow: 0 8px 28px rgba(255,127,0,0.3);
+        }
+        .share-card .challenger {
+            font-size: 15px;
+            opacity: 0.85;
+            margin-bottom: 4px;
+        }
+        .share-card .challenger-name {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .share-card .challenger-no {
+            font-size: 13px;
+            opacity: 0.8;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 14px;
+            margin-bottom: 16px;
+        }
+        .share-card .invite-text {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        .share-btns {
+            display: flex;
+            gap: 14px;
+            margin-top: 10px;
+        }
+        .share-btn {
+            flex: 1;
+            padding: 13px 0;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .share-btn.wechat {
+            background: #07C160;
+            color: #fff;
+        }
+        .share-btn.moments {
+            background: #fff;
+            color: #FF7F00;
+            border: 2px solid #FF7F00;
+        }
+
+        /* ========== 导航 ========== */
+        .nav-dots {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: all 0.3s;
+        }
+        .nav-dot.active {
+            background: #FF7F00;
+            width: 28px;
+            border-radius: 6px;
+        }
+
+        /* ========== 手机横条装饰 ========== */
+        .decor-strip {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF7F00, #FFB347, #FF7F00);
+        }
+    </style>
+</head>
+<body>
+
+<div class="h5-container" id="app">
+
+    <!-- ============ 第1页：封面 ============ -->
+    <div class="page cover-bg" id="page1">
+        <div class="decor-strip"></div>
+        <div class="cover-icon">🛒</div>
+        <h1 class="cover-title">你敢接受挑战吗？</h1>
+        <p class="cover-subtitle">一个月能省多少钱？<br>来测测你的"省钱指数"！</p>
+        <button class="cover-btn" onclick="goPage(2)">点击接受挑战 →</button>
+        <p class="cover-badge">🏫 良久团购 · 校园省钱挑战赛</p>
+    </div>
+
+    <!-- ============ 第2页：测试题 ============ -->
+    <div class="page" id="page2" style="display:none;">
+        <h2 class="quiz-title">你的月生活费花在哪了？</h2>
+        <p class="quiz-subtitle">快速测一测，只需 3 道题</p>
+
+        <div class="quiz-q">
+            <p>❶ 你每个月买日用品花多少钱？</p>
+            <div class="quiz-options" data-q="0">
+                <div class="quiz-opt" onclick="selectOpt(this, 0, 0, 1)">100 以内</div>
+                <div class="quiz-opt" onclick="selectOpt(this, 0, 1, 2)">100-200</div>
+                <div class="quiz-opt" onclick="selectOpt(this, 0, 2, 3)">200 以上</div>
+            </div>
+        </div>
+        <div class="quiz-q">
+            <p>❷ 你最常在哪买东西？</p>
+            <div class="quiz-options" data-q="1">
+                <div class="quiz-opt" onclick="selectOpt(this, 1, 0, 1)">学校超市</div>
+                <div class="quiz-opt" onclick="selectOpt(this, 1, 1, 2)">淘宝/拼多多</div>
+                <div class="quiz-opt" onclick="selectOpt(this, 1, 2, 3)">找熟人团购</div>
+            </div>
+        </div>
+        <div class="quiz-q">
+            <p>❸ 你觉得自己会省钱吗？</p>
+            <div class="quiz-options" data-q="2">
+                <div class="quiz-opt" onclick="selectOpt(this, 2, 0, 1)">月光族本人</div>
+                <div class="quiz-opt" onclick="selectOpt(this, 2, 1, 2)">偶尔记账</div>
+                <div class="quiz-opt" onclick="selectOpt(this, 2, 2, 3)">精打细算</div>
+            </div>
+        </div>
+
+        <button class="quiz-next-btn" id="quizNextBtn" onclick="showResult()">查看我的省钱指数 →</button>
+    </div>
+
+    <!-- ============ 第3页：结果页 ============ -->
+    <div class="page" id="page3" style="display:none;">
+        <h2 class="result-title" id="resultTitle">你的省钱指数</h2>
+        <div class="result-stars" id="resultStars">⭐⭐⭐</div>
+        <div class="result-bar-wrap">
+            <div class="result-bar-fill" id="resultBar" style="width:0%;"></div>
+        </div>
+        <p style="font-size:15px;color:#666;margin-top:8px;">
+            据调查，大学生月均日用消费约 <b>180-260 元</b>
+        </p>
+        <p style="font-size:14px;color:#888;">
+            如果用团购替代超市采买<br>
+            <span style="color:#FF7F00;font-weight:700;">一个月可能省下 <span class="result-save" id="resultSave">60-100</span> 元</span>
+        </p>
+        <p class="result-tip">
+            💡 一年就是 <b style="color:#FF7F00;" id="resultYear">720-1200</b> 元<br>
+            = 一张回家的高铁票 🚄
+        </p>
+        <button class="cover-btn" style="margin-top:20px;background:#FF7F00;color:#fff;" onclick="goPage(4)">
+            怎么做到的？→
+        </button>
+    </div>
+
+    <!-- ============ 第4页：解决方案 ============ -->
+    <div class="page" id="page4" style="display:none;">
+        <h2 class="solution-title">怎么做到的？</h2>
+
+        <div class="step-row">
+            <div class="step-circle show">①</div>
+            <span class="step-arrow">→</span>
+            <div class="step-text show">加入 良久团购群</div>
+        </div>
+        <div class="step-row">
+            <div class="step-circle show">②</div>
+            <span class="step-arrow">→</span>
+            <div class="step-text show">浏览 团长每日推荐</div>
+        </div>
+        <div class="step-row">
+            <div class="step-circle show">③</div>
+            <span class="step-arrow">→</span>
+            <div class="step-text show">下单 省钱坐等收货</div>
+        </div>
+
+        <div class="sell-points">
+            <div class="sell-point">
+                <div class="icon">🏭</div>
+                <div class="label">工厂直供<br><small>没有中间商</small></div>
+            </div>
+            <div class="sell-point">
+                <div class="icon">👩‍💼</div>
+                <div class="label">团长帮你挑<br><small>不用自己比价</small></div>
+            </div>
+            <div class="sell-point">
+                <div class="icon">🏠</div>
+                <div class="label">送到楼下<br><small>快递都不用拿</small></div>
+            </div>
+        </div>
+
+        <button class="cover-btn" style="margin-top:26px;background:#FF7F00;color:#fff;" onclick="goPage(5)">
+            看看有什么活动 →
+        </button>
+    </div>
+
+    <!-- ============ 第5页：活动参与 ============ -->
+    <div class="page" id="page5" style="display:none;">
+        <h2 class="activity-title">参加省钱挑战赛</h2>
+        <p class="activity-subtitle">赢取丰厚大奖！</p>
+
+        <div class="prize-list">
+            <div class="prize-item">
+                <span class="prize-icon">🥇</span>
+                <div class="prize-info">
+                    <div class="name">特等奖 · 良久免单券</div>
+                    <div class="count">500元以内全免</div>
+                </div>
+                <span class="prize-medal">×1</span>
+            </div>
+            <div class="prize-item">
+                <span class="prize-icon">🎧</span>
+                <div class="prize-info">
+                    <div class="name">一等奖 · 蓝牙耳机</div>
+                    <div class="count">价值199元</div>
+                </div>
+                <span class="prize-medal">×3</span>
+            </div>
+            <div class="prize-item">
+                <span class="prize-icon">🎁</span>
+                <div class="prize-info">
+                    <div class="name">二等奖 · 零食大礼包</div>
+                    <div class="count">良久精选好物</div>
+                </div>
+                <span class="prize-medal">×10</span>
+            </div>
+            <div class="prize-item">
+                <span class="prize-icon">💰</span>
+                <div class="prize-info">
+                    <div class="name">参与奖 · 首单立减5元</div>
+                    <div class="count">前100名下单即享</div>
+                </div>
+                <span class="prize-medal">×100</span>
+            </div>
+        </div>
+
+        <!-- 二维码占位（替换为真实二维码图片） -->
+        <div class="qr-placeholder">
+            <span class="qr-icon">📱</span>
+            <span>扫码加入<br>良久校园团购群</span>
+        </div>
+
+        <button class="join-btn" onclick="goPage(6)">立即扫码加入 →</button>
+    </div>
+
+    <!-- ============ 第6页：分享裂变 ============ -->
+    <div class="page" id="page6" style="display:none;">
+        <h2 class="share-title">🎉 恭喜成为</h2>
+        <p style="font-size:18px;color:#FF7F00;font-weight:700;margin-bottom:6px;">"省钱挑战者"</p>
+
+        <div class="share-card">
+            <div class="challenger">挑战者</div>
+            <div class="challenger-name" id="challengerName">大学生用户</div>
+            <div class="challenger-no" id="challengerNo">NO. 0001</div>
+            <div class="invite-text">
+                📢 我正在参加良久团购<br>"校园省钱挑战赛"<br>你也快来测测能省多少钱吧！
+            </div>
+        </div>
+
+        <p style="font-size:14px;color:#888;margin:8px 0;">
+            分享到朋友圈，截图发到群里<br><b style="color:#FF7F00;">再抽一次奖！</b>
+        </p>
+
+        <div class="share-btns">
+            <button class="share-btn wechat" onclick="alert('请截图后分享给微信好友（演示版）')">
+                💬 分享给好友
+            </button>
+            <button class="share-btn moments" onclick="alert('请截图后分享到朋友圈（演示版）')">
+                📸 分享到朋友圈
+            </button>
+        </div>
+
+        <p style="margin-top:20px;font-size:12px;color:#bbb;">
+            良久团购 · 良品良久 · 省心省力
+        </p>
+    </div>
+
+    <!-- ============ 导航圆点 ============ -->
+    <div class="nav-dots" id="navDots">
+        <span class="nav-dot active" data-p="1"></span>
+        <span class="nav-dot" data-p="2"></span>
+        <span class="nav-dot" data-p="3"></span>
+        <span class="nav-dot" data-p="4"></span>
+        <span class="nav-dot" data-p="5"></span>
+        <span class="nav-dot" data-p="6"></span>
+    </div>
+
+</div>
+
+<script>
+    // ============ 全局状态 ============
+    let currentPage = 1;
+    const totalPages = 6;
+    let quizAnswers = [null, null, null];  // 每题选中的 score
+
+    // ============ 页面切换 ============
+    function goPage(n) {
+        document.getElementById('page' + currentPage).style.display = 'none';
+        document.getElementById('page' + n).style.display = 'flex';
+        currentPage = n;
+        updateDots();
+
+        // 进入第3页时触发结果动画
+        if (n === 3) {
+            setTimeout(animateResult, 200);
+        }
+        // 进入第4页时触发步骤动画
+        if (n === 4) {
+            triggerStepAnim();
+        }
+
+        // 滚动到顶部
+        document.getElementById('app').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll('#navDots .nav-dot');
+        dots.forEach(d => d.classList.remove('active'));
+        const activeDot = document.querySelector('#navDots .nav-dot[data-p="' + currentPage + '"]');
+        if (activeDot) activeDot.classList.add('active');
+    }
+
+    // ============ 测试题选择 ============
+    function selectOpt(el, qIndex, optIndex, score) {
+        // 取消同题其他选项的选中
+        const parent = el.parentElement;
+        parent.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        quizAnswers[qIndex] = score;
+
+        // 检查是否3题都答了
+        checkQuizComplete();
+    }
+
+    function checkQuizComplete() {
+        const allAnswered = quizAnswers.every(a => a !== null);
+        const btn = document.getElementById('quizNextBtn');
+        if (allAnswered) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    }
+
+    // ============ 计算结果 ============
+    function showResult() {
+        if (quizAnswers.includes(null)) {
+            alert('请先回答完 3 道题哦~');
+            return;
+        }
+        goPage(3);
+    }
+
+    function animateResult() {
+        const total = quizAnswers.reduce((s, v) => s + v, 0); // 3~9
+
+        let stars, levelText, saveLow, saveHigh, barPercent;
+        if (total <= 4) {
+            stars = '⭐⭐';
+            levelText = '你还有很大的省钱空间！';
+            saveLow = 80; saveHigh = 100;
+            barPercent = 25;
+        } else if (total <= 6) {
+            stars = '⭐⭐⭐';
+            levelText = '有省钱意识，但方法可以更好';
+            saveLow = 60; saveHigh = 80;
+            barPercent = 55;
+        } else if (total <= 8) {
+            stars = '⭐⭐⭐⭐';
+            levelText = '很会过日子了，还能更省吗？';
+            saveLow = 40; saveHigh = 60;
+            barPercent = 80;
+        } else {
+            stars = '⭐⭐⭐⭐⭐';
+            levelText = '省钱达人！但用团购还能再省';
+            saveLow = 30; saveHigh = 50;
+            barPercent = 95;
+        }
+
+        document.getElementById('resultStars').textContent = stars;
+        document.getElementById('resultTitle').textContent = levelText;
+        document.getElementById('resultSave').textContent = saveLow + '-' + saveHigh;
+        document.getElementById('resultYear').textContent = (saveLow * 12) + '-' + (saveHigh * 12);
+
+        // 柱状图动画
+        setTimeout(() => {
+            document.getElementById('resultBar').style.width = barPercent + '%';
+        }, 300);
+    }
+
+    // ============ 步骤动画重置 ============
+    function triggerStepAnim() {
+        const circles = document.querySelectorAll('#page4 .step-circle');
+        const texts = document.querySelectorAll('#page4 .step-text');
+        circles.forEach(c => { c.classList.remove('show'); void c.offsetWidth; c.classList.add('show'); });
+        texts.forEach(t => { t.classList.remove('show'); void t.offsetWidth; t.classList.add('show'); });
+    }
+
+    // ============ 触屏滑动支持 ============
+    let touchStartY = 0;
+    let touchStartX = 0;
+
+    document.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+        const dy = touchStartY - e.changedTouches[0].clientY;
+        const dx = touchStartX - e.changedTouches[0].clientX;
+        
+        // 仅当纵向滑动距离大于横向且超过阈值
+        if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 60) {
+            if (dy > 0 && currentPage < totalPages) {
+                goPage(currentPage + 1);  // 上滑 → 下一页
+            } else if (dy < 0 && currentPage > 1) {
+                goPage(currentPage - 1);  // 下滑 → 上一页
+            }
+        }
+    }, { passive: true });
+
+    // ============ 键盘翻页（PC调试用） ============
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+            if (currentPage < totalPages) goPage(currentPage + 1);
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            if (currentPage > 1) goPage(currentPage - 1);
+        }
+    });
+
+    // ============ 初始化 ============
+    console.log('✅ 良久团购 · 校园省钱挑战赛 H5 已就绪');
+    console.log('   📱 支持触屏上下滑动翻页');
+    console.log('   ⌨️  支持键盘 ↑↓ 翻页');
+    console.log('   📄  共 ' + totalPages + ' 页');
+</script>
+
+</body>
+</html>

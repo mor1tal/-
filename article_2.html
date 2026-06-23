@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>她用一部手机和200人的群，撑起了一个家</title>
+<style>
+  :root {
+    --coral: #FF7F50;
+    --deepblue: #1B3A5C;
+    --text: #333;
+    --text-light: #666;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Serif SC', 'STSong', Georgia, serif;
+    background: #f5f5f5;
+    -webkit-font-smoothing: antialiased;
+    line-height: 2;
+    color: var(--text);
+  }
+
+  .article-container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .article-header {
+    padding: 40px 28px 30px;
+    text-align: center;
+  }
+  .article-header .category {
+    display: inline-block;
+    font-size: 0.8em;
+    color: var(--coral);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .article-header h1 {
+    font-size: 1.65em;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .article-header .meta {
+    font-size: 0.82em;
+    color: #aaa;
+    letter-spacing: 1px;
+  }
+  .article-header .divider {
+    width: 40px;
+    height: 3px;
+    background: var(--coral);
+    margin: 20px auto 0;
+    border-radius: 2px;
+  }
+
+  /* Body */
+  .article-body {
+    padding: 0 28px 50px;
+  }
+  .article-body h2 {
+    font-size: 1.15em;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 36px 0 14px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  .article-body p {
+    margin-bottom: 18px;
+    font-size: 0.98em;
+    color: var(--text);
+    text-align: justify;
+  }
+
+  /* Scene break */
+  .scene-break {
+    text-align: center;
+    margin: 28px 0;
+    color: #ccc;
+    font-size: 1.2em;
+    letter-spacing: 8px;
+  }
+
+  /* Quote - character dialog */
+  .dialog {
+    margin: 20px 0;
+    padding: 18px 22px;
+    background: #FFF8F5;
+    border-radius: 10px;
+    border-left: 4px solid var(--coral);
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.9;
+  }
+  .dialog .speaker {
+    font-weight: 700;
+    color: var(--coral);
+    font-size: 0.85em;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  /* Highlight box */
+  .insight-box {
+    background: linear-gradient(135deg, #1B3A5C, #2D5F8A);
+    color: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 22px 0;
+    text-align: center;
+  }
+  .insight-box p {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95em;
+    margin-bottom: 0;
+    text-align: center;
+    line-height: 1.8;
+  }
+  .insight-box .accent {
+    color: #FFD700;
+    font-weight: 700;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: flex;
+    justify-content: space-around;
+    margin: 24px 0;
+    gap: 12px;
+  }
+  .stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 18px 10px;
+    background: #FFF8F5;
+    border-radius: 10px;
+  }
+  .stat-item .num {
+    font-size: 1.6em;
+    font-weight: 900;
+    color: var(--coral);
+  }
+  .stat-item .lbl {
+    font-size: 0.78em;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  /* CTA */
+  .cta-box {
+    background: linear-gradient(135deg, #FF7F50, #FF5722);
+    color: white;
+    border-radius: 12px;
+    padding: 22px;
+    margin: 28px 0;
+    text-align: center;
+  }
+  .cta-box h3 { font-size: 1.1em; letter-spacing: 2px; margin-bottom: 6px; }
+  .cta-box p { color: rgba(255,255,255,0.85); font-size: 0.88em; margin-bottom: 0; text-align: center; }
+
+  /* Footer */
+  .article-footer {
+    text-align: center;
+    padding: 30px 28px;
+    color: #bbb;
+    font-size: 0.8em;
+    border-top: 1px solid #f0f0f0;
+  }
+  .article-footer .brand {
+    color: var(--coral);
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 680px) {
+    .article-header h1 { font-size: 1.35em; }
+    .article-body { padding: 0 18px 40px; }
+    .article-header { padding: 30px 18px 24px; }
+    .stats-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="article-container">
+
+  <header class="article-header">
+    <div class="category">人 物 故 事</div>
+    <h1>她用一部手机和200人的群，撑起了一个家</h1>
+    <p class="meta">原创 · 8分钟阅读 · 2025年</p>
+    <div class="divider"></div>
+  </header>
+
+  <div class="article-body">
+
+    <p>在这个时代，有一种力量叫<strong>"妈妈的力量"</strong>。她们一边照顾家庭，一边用自己的方式为家庭撑起一片天。</p>
+
+    <p>今天要讲的故事，来自一位普通的宝妈——阿玲。她说，良久团购改变了她的生活。我听了她的故事后，决定把它写下来。</p>
+
+    <div class="scene-break">· · ·</div>
+
+    <p>认识阿玲是在一个亲子活动上。她带着4岁的女儿，笑容温柔，说话轻声细语。如果不是朋友介绍，我不会想到——这样一个看似柔弱的妈妈，靠一部手机，每个月稳定有七八千元的收入。</p>
+
+    <div class="dialog">
+      <div class="speaker">阿玲说：</div>
+      <p>"三年以前，我完全是另一个样子。"</p>
+    </div>
+
+    <p>那时候，阿玲刚生完孩子辞职在家。丈夫做装修，收入不稳定，每个月还完房贷就所剩无几。她试过很多办法：在朋友圈卖过面膜，结果囤了一堆货卖不出去；想过出去做兼职，但孩子没人带；开过淘宝店——没有流量、没有资金，一个月一单都没卖出去。</p>
+
+    <div class="dialog">
+      <div class="speaker">阿玲回忆那段日子：</div>
+      <p>"那段时间特别焦虑。每天看着银行卡余额越来越少，晚上都睡不着。但我又不敢跟老公说太多，他压力已经够大了。"</p>
+    </div>
+
+    <p>她说这些话的时候，语气很平静。但我知道，那段日子一定很难熬。</p>
+
+    <div class="scene-break">· · ·</div>
+
+    <h2>转机，出现在一次同学聚会上</h2>
+
+    <p>一个做良久团购的老同学跟她说：<strong>"阿玲，你不是在家带娃吗？要不要试试做良久？不需要囤货、不需要投资，你建个200人的群就能开始。"</strong></p>
+
+    <p>阿玲一开始是犹豫的——她之前做微商亏过钱，对"零门槛创业"有些本能的不信任。但老同学的一句话打动了她：</p>
+
+    <div class="dialog">
+      <div class="speaker">老同学说：</div>
+      <p>"你先别想着赚钱，就当我拉你进群买东西。你自己买了觉得划算，再推荐给别人。觉得不好，随时退出，一分钱不损失。"</p>
+    </div>
+
+    <p>阿玲进群后的第一反应是：<strong>真的好便宜。</strong></p>
+
+    <p>洗衣液、纸巾、洗发水、零食……全是家里每天用的东西，价格比超市便宜一大截。她买了三次之后，觉得品质确实不错，就建了自己的团购群，把闺蜜、邻居、孩子同学的妈妈都拉了进来。</p>
+
+    <div class="dialog">
+      <div class="speaker">阿玲笑着说：</div>
+      <p>"刚开始根本不敢说话，怕人家嫌我烦。第一天发产品的时候，心跳得特别厉害。但没想到，过了十几分钟就有姐妹下单了——她说'阿玲你推荐的我放心'。那一刻，真的很感动。"</p>
+    </div>
+
+    <div class="scene-break">· · ·</div>
+
+    <h2>从30人到500人，她用真诚换来了信任</h2>
+
+    <p>阿玲的群从最开始的30多人，慢慢涨到200多、300多……现在她有两个500人的群，团队里还有十几个跟着她一起做团购的宝妈。</p>
+
+    <div class="dialog">
+      <div class="speaker">阿玲说：</div>
+      <p>"她们叫我'阿玲姐'，其实我也没比她们大多少。我就是把我知道的都教给她们——怎么建群、怎么发素材、怎么跟顾客沟通。看到她们像我一样，从零开始慢慢有收入，我比自己赚钱还开心。我们不只是买卖关系，更是互相支持的朋友。"</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="num">2个</div>
+        <div class="lbl">500人团购群</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">8000+</div>
+        <div class="lbl">月收入（元）</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">10+</div>
+        <div class="lbl">团队宝妈成员</div>
+      </div>
+    </div>
+
+    <p>阿玲说，做良久团购带给她最大的改变不只是钱。</p>
+
+    <div class="insight-box">
+      <p>"钱当然很重要。但更重要的是，<span class="accent">我重新找到了自己的价值。</span>以前觉得自己除了带娃什么都不会。现在我发现，<span class="accent">我可以帮助很多人，可以被这么多人需要。</span>这种成就感是钱买不到的。"</p>
+    </div>
+
+    <div class="scene-break">· · ·</div>
+
+    <p>写这篇文章的时候，我想起了一句话：<strong>"世界上只有一种真正的英雄主义，那就是在认清生活的真相后，依然热爱生活。"</strong></p>
+
+    <p>阿玲和千千万万在良久团购中努力着的宝妈们，她们不是在做什么轰轰烈烈的大事业。但她们用自己的方式，让家庭的生活变得更好一点，让自己的人生变得更有光。</p>
+
+    <p>如果你也是一位想要改变、想要兼顾家庭与事业的女性，不妨了解一下良久团购。它不是一个能让你一夜暴富的神话——但它可能是一扇门，<strong>一扇通往更多可能性的门。</strong></p>
+
+    <div class="cta-box">
+      <h3>💪 良久，让努力的人被看见</h3>
+      <p>零门槛 · 零投资 · 一部手机 · 一个群<br>你也可以开启属于自己的良久故事</p>
+    </div>
+
+  </div>
+
+  <footer class="article-footer">
+    <p><span class="brand">良久团购</span> · 让每个家庭生活更美好</p>
+    <p style="margin-top:4px;">本文为真实故事改编，人物为化名</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
